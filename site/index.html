@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verity: who is really serving your model?</title>
+<meta name="description" content="Independent, unannounced audits of open-model inference hosts: token billing, tool calls, truncation and output drift.">
+<style>
+  :root {
+    --bg: #fbfaf7; --panel: #ffffff; --ink: #16181d; --muted: #5d6470; --line: #e3e0d8;
+    --ok: #17703f; --ok-bg: #e4f3ea; --bad: #a3271b; --bad-bg: #fbe6e2; --accent: #2b3fd6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101216; --panel: #181b21; --ink: #eceef2; --muted: #9aa2af; --line: #2a2e37;
+      --ok: #6fd39a; --ok-bg: #16301f; --bad: #ff9c8f; --bad-bg: #3a1a16; --accent: #9aa7ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 40px 16px 72px; }
+  .brand { font: 600 14px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(30px, 5.4vw, 50px); line-height: 1.06; letter-spacing: -.02em; margin: 14px 0 12px; text-wrap: balance; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0 0 28px; }
+  .meta { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); margin: 0 0 14px; overflow-wrap: anywhere; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+  .empty { padding: 28px 22px; }
+  .empty h2 { margin: 0 0 6px; font-size: 20px; }
+  .empty p { margin: 0; color: var(--muted); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 12px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child, th:last-child, td:last-child { text-align: left; }
+  td:last-child { white-space: normal; min-width: 200px; }
+  thead th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .host { font-weight: 600; }
+  .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+  .bad { color: var(--bad); font-weight: 600; }
+  .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 99px; margin: 2px 4px 2px 0; }
+  .tag.ok { background: var(--ok-bg); color: var(--ok); }
+  .tag.bad { background: var(--bad-bg); color: var(--bad); }
+  h2.section { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 40px 0 12px; }
+  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .card { padding: 16px 18px; }
+  .card h3 { margin: 0 0 4px; font-size: 16px; }
+  .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  ul.caveats { color: var(--muted); font-size: 14px; padding-left: 20px; margin: 0; }
+  footer { margin-top: 44px; color: var(--muted); font-size: 14px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">Verity</div>
+  <h1>The host that bills you also reads the meter.</h1>
+  <p class="lede">Verity sends the same unannounced requests to every host of the same open model, then compares what came back and what was billed. Every number links to raw evidence anyone can re-check.</p>
+
+  <p class="meta" id="meta"></p>
+  <div id="board" class="panel empty">
+    <h2>Loading the latest audit</h2>
+    <p>One moment.</p>
+  </div>
+
+  <div id="caveats-wrap" hidden>
+    <h2 class="section">Read this before quoting a number</h2>
+    <ul class="caveats" id="caveats"></ul>
+  </div>
+
+  <h2 class="section">What gets measured</h2>
+  <div class="grid">
+    <div class="panel card"><h3>Token ratio</h3><p>Hosts are asked to repeat a fixed text. Identical output must cost the same tokens, so each host's billed count is divided by the median across hosts. Above 1.15 is flagged.</p></div>
+    <div class="panel card"><h3>Tool calls</h3><p>Share of function-calling requests that return the right tool with arguments that pass the schema. Below 90% is flagged.</p></div>
+    <div class="panel card"><h3>Cut-offs</h3><p>Share of long answers that came back empty or stopped before the requested end marker. Above 5% is flagged.</p></div>
+    <div class="panel card"><h3>Agreement</h3><p>How closely a host's answers at temperature 0 match the closest half of its peers. Low agreement can mean a different or squeezed model. Below 0.60 is flagged.</p></div>
+  </div>
+
+  <footer>
+    <p>A flag is a measurement that crossed a provisional threshold, not an accusation. Small samples and honest configuration differences can all cause one. Hosts can reply or dispute a result by opening an issue.</p>
+    <p><a href="https://github.com/let-the-dreamers-rise/verity">Method, code and raw evidence on GitHub</a></p>
+  </footer>
+</main>
+<script>
+(async function () {
+  const board = document.getElementById("board");
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const empty = (title, body) => { board.className = "panel empty"; board.replaceChildren(el("h2", "", title), el("p", "", body)); };
+
+  let report = null;
+  for (const url of ["data/latest.json", "../results/latest.json"]) {
+    try { const r = await fetch(url, { cache: "no-store" }); if (r.ok) { report = await r.json(); break; } } catch (e) {}
+  }
+  if (!report || !Array.isArray(report.endpoints) || report.endpoints.length === 0) {
+    empty("No audit has been published yet", "The first run is pending. This page shows measured results only, so it stays empty until there are real ones.");
+    return;
+  }
+
+  const day = String(report.startedAt).slice(0, 10);
+  const meta = document.getElementById("meta");
+  meta.textContent = "Audit of " + day + " UTC · " + report.probeCount + " probes per host";
+  if (report.evidence) {
+    meta.append(" · evidence ");
+    const a = el("a", "", "raw/" + day + ".json"); a.href = "data/" + report.evidence.file; meta.append(a);
+    meta.append(" · sha256 " + report.evidence.sha256);
+  }
+
+  const T = { availability: 0.95, toolCallAccuracy: 0.9, truncationRate: 0.05, tokenRatio: 1.15, similarity: 0.6 };
+  const pct = (v) => v == null ? "n/a" : Math.round(v * 100) + "%";
+  const num = (v) => v == null ? "n/a" : v.toFixed(2);
+  const cell = (text, isBad) => el("td", isBad ? "bad" : "", text);
+
+  const table = el("table");
+  const head = el("tr");
+  ["Host", "Answered", "Tool calls", "Cut off", "Token ratio", "Agreement", "Median latency", "Verdict"].forEach((h) => head.append(el("th", "", h)));
+  const thead = el("thead"); thead.append(head); table.append(thead);
+  const tbody = el("tbody");
+  const rows = report.endpoints.filter((s) => s.probes > 0).sort((a, b) => a.flags.length - b.flags.length || a.host.localeCompare(b.host));
+  for (const s of rows) {
+    const tr = el("tr");
+    const first = el("td", "host", s.host);
+    first.append(el("span", "sub", s.model + (s.via && s.via !== s.host ? " · via " + s.via : "") + (s.reference ? " · reference" : "")));
+    tr.append(first,
+      cell(pct(s.availability), s.availability < T.availability),
+      cell(pct(s.toolCallAccuracy), s.toolCallAccuracy != null && s.toolCallAccuracy < T.toolCallAccuracy),
+      cell(pct(s.truncationRate), s.truncationRate != null && s.truncationRate > T.truncationRate),
+      cell(num(s.tokenRatio), s.tokenRatio != null && s.tokenRatio > T.tokenRatio),
+      cell(num(s.similarity), s.similarity != null && s.similarity < T.similarity),
+      cell(s.medianLatencyMs == null ? "n/a" : Math.round(s.medianLatencyMs) + " ms", false));
+    const verdict = el("td");
+    if (s.flags.length === 0) verdict.append(el("span", "tag ok", "no flags"));
+    else s.flags.forEach((f) => verdict.append(el("span", "tag bad", f)));
+    tr.append(verdict); tbody.append(tr);
+  }
+  table.append(tbody);
+  if (rows.length === 0) { empty("The last run reached no hosts", "No host answered a probe, so there is nothing to show."); return; }
+  const scroll = el("div", "scroll"); scroll.append(table);
+  board.className = "panel"; board.replaceChildren(scroll);
+
+  if (Array.isArray(report.caveats) && report.caveats.length) {
+    const ul = document.getElementById("caveats");
+    report.caveats.forEach((c) => ul.append(el("li", "", c)));
+    document.getElementById("caveats-wrap").hidden = false;
+  }
+})();
+</script>
+</body>
+</html>

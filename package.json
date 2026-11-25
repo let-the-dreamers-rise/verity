@@ -1,0 +1,14 @@
+{
+  "name": "verity",
+  "version": "0.1.0",
+  "description": "Independent audits of open-model inference hosts: who serves the real model, who pads tokens, who drops tool calls.",
+  "type": "module",
+  "private": true,
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "test": "node --test \"test/*.test.ts\"",
+    "audit": "node src/cli.ts",
+    "audit:dry": "node src/cli.ts --dry-run"
+  },
+  "license": "MIT"
+}
