@@ -1,0 +1,36 @@
+name: Board
+# Publishes the board from the results already in the repository. Sends no probes.
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches: [main]
+    paths: ["site/**", "results/**"]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Assemble site
+        run: |
+          mkdir -p _site/data
+          cp -r site/. _site/
+          cp -r results/. _site/data/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4

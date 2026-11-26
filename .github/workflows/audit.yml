@@ -47,26 +47,8 @@ jobs:
           fi
   board:
     needs: audit
-    runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
       id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          ref: main
-      - name: Assemble site
-        run: |
-          mkdir -p _site/data
-          cp -r site/. _site/
-          cp -r results/. _site/data/
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: _site
-      - id: deploy
-        uses: actions/deploy-pages@v4
+    uses: ./.github/workflows/board.yml
