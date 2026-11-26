@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "startedAt": "2026-11-26T21:53:39.369Z",
-  "finishedAt": "2026-11-26T21:57:09.047Z",
-  "probeCount": 24,
+  "startedAt": "2026-11-26T21:58:36.920Z",
+  "finishedAt": "2026-11-26T22:03:53.338Z",
+  "probeCount": 36,
   "endpoints": [
     {
       "endpointId": "hf/akashml/llama-3.3-70b",
@@ -10,16 +10,20 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
-      "availability": 1,
-      "toolCallAccuracy": 1,
-      "truncationRate": 0,
+      "availability": 0.611,
+      "toolCallAccuracy": 0.389,
+      "truncationRate": 0.25,
       "tokenRatio": 1,
-      "similarity": 0.792,
-      "medianLatencyMs": 1399,
-      "flags": []
+      "similarity": 0.728,
+      "medianLatencyMs": 1434,
+      "flags": [
+        "low availability",
+        "tool calls failing",
+        "answers cut off or empty"
+      ]
     },
     {
       "endpointId": "hf/amazon-bedrock/llama-3.3-70b",
@@ -27,15 +31,15 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
-      "availability": 0.75,
+      "availability": 0.5,
       "toolCallAccuracy": 0,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.822,
-      "medianLatencyMs": 458,
+      "similarity": 0.818,
+      "medianLatencyMs": 374,
       "flags": [
         "low availability",
         "tool calls failing"
@@ -47,15 +51,15 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
-      "toolCallAccuracy": 0.667,
+      "toolCallAccuracy": 0.722,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.882,
-      "medianLatencyMs": 1248,
+      "similarity": 0.816,
+      "medianLatencyMs": 1348,
       "flags": [
         "tool calls failing"
       ]
@@ -66,15 +70,15 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
-      "toolCallAccuracy": 0.333,
+      "toolCallAccuracy": 0.5,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.881,
-      "medianLatencyMs": 709,
+      "similarity": 0.818,
+      "medianLatencyMs": 649,
       "flags": [
         "tool calls failing"
       ]
@@ -85,15 +89,15 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.828,
-      "medianLatencyMs": 2459,
+      "similarity": 0.784,
+      "medianLatencyMs": 2386,
       "flags": []
     },
     {
@@ -102,15 +106,15 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
-      "rateLimited": 0,
+      "probes": 34,
+      "rateLimited": 2,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.628,
-      "medianLatencyMs": 438,
+      "similarity": 0.664,
+      "medianLatencyMs": 385,
       "flags": []
     },
     {
@@ -119,15 +123,15 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 0,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.885,
-      "medianLatencyMs": 1073,
+      "similarity": 0.832,
+      "medianLatencyMs": 2193,
       "flags": [
         "tool calls failing"
       ]
@@ -138,15 +142,15 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.97,
-      "medianLatencyMs": 972,
+      "similarity": 0.948,
+      "medianLatencyMs": 547,
       "flags": []
     },
     {
@@ -155,18 +159,16 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 4,
-      "rateLimited": 20,
+      "probes": 11,
+      "rateLimited": 25,
       "setupError": null,
-      "availability": 0.75,
-      "toolCallAccuracy": null,
+      "availability": 1,
+      "toolCallAccuracy": 1,
       "truncationRate": null,
       "tokenRatio": 1,
-      "similarity": null,
-      "medianLatencyMs": 829,
-      "flags": [
-        "low availability"
-      ]
+      "similarity": 0.966,
+      "medianLatencyMs": 1577,
+      "flags": []
     },
     {
       "endpointId": "hf/deepinfra/gemma-4-31b",
@@ -174,15 +176,15 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.89,
-      "medianLatencyMs": 1401,
+      "similarity": 0.916,
+      "medianLatencyMs": 991,
       "flags": []
     },
     {
@@ -191,15 +193,15 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 23,
-      "rateLimited": 1,
+      "probes": 36,
+      "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.91,
-      "medianLatencyMs": 489,
+      "similarity": 0.75,
+      "medianLatencyMs": 458,
       "flags": []
     },
     {
@@ -208,15 +210,15 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.949,
-      "medianLatencyMs": 993,
+      "similarity": 0.941,
+      "medianLatencyMs": 971,
       "flags": []
     },
     {
@@ -225,15 +227,15 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 24,
+      "probes": 36,
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.964,
-      "medianLatencyMs": 1467,
+      "similarity": 0.801,
+      "medianLatencyMs": 1235,
       "flags": []
     }
   ],
@@ -242,11 +244,11 @@
     "Only open-weight models are audited; closed models cannot be re-run by a third party.",
     "A flag is a lead to investigate, not proof of wrongdoing.",
     "openrouter/free/gemma-4-31b: not measured, the request was refused (Provider returned error).",
-    "hf/crusoe/gemma-4-31b: 20 call(s) hit our rate limit or credit limit and were left out of its scores.",
-    "hf/modal/gemma-4-31b: 1 call(s) hit our rate limit or credit limit and were left out of its scores."
+    "hf/groq/llama-3.3-70b: 2 call(s) hit our rate limit or credit limit and were left out of its scores.",
+    "hf/crusoe/gemma-4-31b: 25 call(s) hit our rate limit or credit limit and were left out of its scores."
   ],
   "evidence": {
     "file": "raw/2026-11-26.json",
-    "sha256": "8ddbb50cf58d6df171ecab45192f85f03c9196ea25d38825c7d0b85b23984b1c"
+    "sha256": "51872b4c0fafad703bae728a5925646540033e8bcf909e9b2bdaa55624df9f9c"
   }
 }
