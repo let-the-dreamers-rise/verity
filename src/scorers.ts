@@ -230,6 +230,21 @@ export function scoreEndpoints(
     const toolPass = toolObs.filter((o) => checkToolCall(o, probeById.get(o.probeId)!).pass).length;
     const longFail = longObs.filter((o) => !checkTruncation(o, probeById.get(o.probeId)!).pass).length;
 
+    // Up to six failed tool calls, in plain words, so a reader can see what went wrong.
+    const failures = toolObs
+      .map((o) => ({ o, probe: probeById.get(o.probeId)!, res: checkToolCall(o, probeById.get(o.probeId)!) }))
+      .filter((x) => !x.res.pass)
+      .sort((a, b) => a.probe.id.localeCompare(b.probe.id, "en", { numeric: true }))
+      .slice(0, 6)
+      .map(({ o, probe, res }) => ({
+        probeId: probe.id,
+        asked: String(probe.messages.at(-1)?.content ?? "").slice(0, 200),
+        got: o.toolCalls.length
+          ? `${o.toolCalls[0].name}(${o.toolCalls[0].arguments})`.slice(0, 260)
+          : (o.text.trim() || o.error || `HTTP ${o.status}`).replace(/\s+/g, " ").slice(0, 260),
+        why: res.detail.slice(0, 200),
+      }));
+
     const score: EndpointScore = {
       endpointId: ep.id,
       host: ep.host,
@@ -241,6 +256,9 @@ export function scoreEndpoints(
       setupError,
       availability: round(obs.length ? usable.length / obs.length : 0)!,
       toolCallAccuracy: round(toolObs.length ? toolPass / toolObs.length : null),
+      toolCallsPassed: toolPass,
+      toolCallsScored: toolObs.length,
+      toolFailures: failures,
       truncationRate: round(longObs.length ? longFail / longObs.length : null),
       tokenRatio: round(ratios.get(ep.id) ?? null),
       similarity: round(sims.get(ep.id) ?? null),

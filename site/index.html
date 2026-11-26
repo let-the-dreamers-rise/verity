@@ -3,144 +3,313 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Verity: who is really serving your model?</title>
-<meta name="description" content="Independent, unannounced audits of open-model inference hosts: token billing, tool calls, truncation and output drift.">
+<title>Verity: the same model is not the same on every host</title>
+<meta name="description" content="Verity sends identical requests to every host of the same open model and publishes what came back: tool calls, billing, cut-offs and drift, with raw evidence.">
 <style>
   :root {
-    --bg: #fbfaf7; --panel: #ffffff; --ink: #16181d; --muted: #5d6470; --line: #e3e0d8;
-    --ok: #17703f; --ok-bg: #e4f3ea; --bad: #a3271b; --bad-bg: #fbe6e2; --accent: #2b3fd6;
+    --bg: #0b0d10; --panel: #13161b; --panel-2: #191d24; --ink: #f1f3f6; --muted: #98a1ae; --faint: #5f6875;
+    --line: #242932; --good: #4ade80; --good-bg: #10281a; --warn: #fbbf24; --warn-bg: #2e2408;
+    --bad: #ff6b5e; --bad-bg: #32130f; --accent: #8fa3ff; --track: #222730;
   }
-  @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: light) {
     :root {
-      --bg: #101216; --panel: #181b21; --ink: #eceef2; --muted: #9aa2af; --line: #2a2e37;
-      --ok: #6fd39a; --ok-bg: #16301f; --bad: #ff9c8f; --bad-bg: #3a1a16; --accent: #9aa7ff;
+      --bg: #f7f6f2; --panel: #ffffff; --panel-2: #f1efe9; --ink: #14161a; --muted: #5b6370; --faint: #8a919c;
+      --line: #e2dfd6; --good: #15803d; --good-bg: #e2f4e8; --warn: #a16207; --warn-bg: #fbf0cf;
+      --bad: #b42318; --bad-bg: #fce5e1; --accent: #2f45d8; --track: #e7e4dc;
     }
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body { margin: 0; background: var(--bg); color: var(--ink);
-    font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 1040px; margin: 0 auto; padding: 40px 16px 72px; }
-  .brand { font: 600 14px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-  h1 { font-size: clamp(30px, 5.4vw, 50px); line-height: 1.06; letter-spacing: -.02em; margin: 14px 0 12px; text-wrap: balance; }
-  .lede { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0 0 28px; }
-  .meta { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); margin: 0 0 14px; overflow-wrap: anywhere; }
-  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
-  .empty { padding: 28px 22px; }
-  .empty h2 { margin: 0 0 6px; font-size: 20px; }
-  .empty p { margin: 0; color: var(--muted); }
-  .scroll { overflow-x: auto; }
-  table { border-collapse: collapse; width: 100%; min-width: 760px; font-variant-numeric: tabular-nums; }
-  th, td { text-align: right; padding: 12px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-  th:first-child, td:first-child, th:last-child, td:last-child { text-align: left; }
-  td:last-child { white-space: normal; min-width: 200px; }
-  thead th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  tbody tr:last-child td { border-bottom: 0; }
+    font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  @media (max-width: 480px) { .wrap { padding: 0 16px; } }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; }
+  .mark { font-weight: 700; letter-spacing: .16em; text-transform: uppercase; font-size: 14px; display: flex; align-items: center; gap: 10px; }
+  .mark i { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  nav .links { display: flex; gap: 22px; font-size: 14px; }
+  nav .links a { color: var(--muted); text-decoration: none; }
+  nav .links a:hover { color: var(--ink); }
+
+  header.hero { padding: 56px 0 40px; }
+  .eyebrow { font-size: 13px; color: var(--muted); letter-spacing: .04em; margin: 0 0 18px; }
+  .eyebrow b { color: var(--good); font-weight: 600; }
+  h1 { font-size: clamp(38px, 7.2vw, 76px); line-height: .98; letter-spacing: -.035em; margin: 0 0 22px; font-weight: 750; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--bad); }
+  .lede { font-size: clamp(17px, 2.1vw, 20px); color: var(--muted); max-width: 60ch; margin: 0; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 14px; background: var(--panel); margin: 36px 0 0; overflow: hidden; }
+  .stat { padding: 20px 22px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: 0; }
+  .stat .n { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; } .stat:nth-child(2) { border-right: 0; } .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); } }
+
+  section { padding: 56px 0 0; }
+  .kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 0 0 10px; }
+  h2 { font-size: clamp(24px, 3.4vw, 34px); letter-spacing: -.02em; line-height: 1.12; margin: 0 0 8px; text-wrap: balance; }
+  .sub { color: var(--muted); margin: 0 0 22px; max-width: 64ch; }
+
+  .model { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); margin: 0 0 18px; overflow: hidden; }
+  .model > header { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: baseline; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--line); background: var(--panel-2); }
+  .model h3 { margin: 0; font-size: 18px; letter-spacing: -.01em; }
+  .model .verdict { font-size: 14px; color: var(--muted); }
+  .model .verdict b.bad { color: var(--bad); } .model .verdict b.good { color: var(--good); }
+
+  .row { border-bottom: 1px solid var(--line); }
+  .row:last-child { border-bottom: 0; }
+  .row > summary, .row > .head { list-style: none; display: grid; grid-template-columns: minmax(130px, 1.1fr) minmax(180px, 2.2fr) repeat(3, minmax(70px, .7fr)) 22px; gap: 16px; align-items: center; padding: 15px 22px; }
+  .row > summary { cursor: pointer; }
+  .row > summary::-webkit-details-marker { display: none; }
+  .row > summary:hover { background: var(--panel-2); }
   .host { font-weight: 600; }
-  .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
-  .bad { color: var(--bad); font-weight: 600; }
-  .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 99px; margin: 2px 4px 2px 0; }
-  .tag.ok { background: var(--ok-bg); color: var(--ok); }
-  .tag.bad { background: var(--bad-bg); color: var(--bad); }
-  h2.section { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 40px 0 12px; }
-  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-  .card { padding: 16px 18px; }
-  .card h3 { margin: 0 0 4px; font-size: 16px; }
-  .card p { margin: 0; color: var(--muted); font-size: 14px; }
+  .host small { display: block; font-weight: 400; color: var(--faint); font-size: 12px; }
+  .meter { display: flex; align-items: center; gap: 12px; }
+  .bar { flex: 1; height: 10px; border-radius: 99px; background: var(--track); overflow: hidden; min-width: 60px; }
+  .bar i { display: block; height: 100%; border-radius: 99px; }
+  .good .bar i { background: var(--good); } .warn .bar i { background: var(--warn); } .bad .bar i { background: var(--bad); }
+  .frac { font-variant-numeric: tabular-nums; font-size: 14px; white-space: nowrap; min-width: 62px; text-align: right; font-weight: 600; }
+  .good .frac { color: var(--good); } .warn .frac { color: var(--warn); } .bad .frac { color: var(--bad); }
+  .cell { font-variant-numeric: tabular-nums; font-size: 14px; text-align: right; }
+  .cell small { display: none; color: var(--faint); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+  .cell.flag { color: var(--bad); font-weight: 600; }
+  .chev { color: var(--faint); transition: transform .15s; text-align: center; }
+  details[open] > summary .chev { transform: rotate(90deg); }
+  .colhead { display: grid; grid-template-columns: minmax(130px, 1.1fr) minmax(180px, 2.2fr) repeat(3, minmax(70px, .7fr)) 22px; gap: 16px; padding: 10px 22px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); border-bottom: 1px solid var(--line); }
+  .colhead span:nth-child(n+3) { text-align: right; }
+  @media (max-width: 760px) {
+    .colhead { display: none; }
+    .row > summary, .row > .head { grid-template-columns: 1fr 1fr 1fr; gap: 10px 12px; padding: 16px; }
+    .host { grid-column: 1 / -1; } .meter { grid-column: 1 / -1; }
+    .cell { text-align: left; } .cell small { display: block; } .chev { display: none; }
+    .model > header { padding: 16px; }
+  }
+
+  .evidence { padding: 4px 22px 22px; background: var(--panel-2); }
+  .evidence p.note { color: var(--muted); font-size: 14px; margin: 14px 0 12px; }
+  .case { border: 1px solid var(--line); border-radius: 10px; background: var(--panel); padding: 14px 16px; margin: 0 0 10px; }
+  .case dt { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); margin: 10px 0 3px; }
+  .case dt:first-child { margin-top: 0; }
+  .case dd { margin: 0; font-size: 14px; overflow-wrap: anywhere; }
+  .case dd.mono { font-size: 13px; color: var(--ink); }
+  .case dd.why { color: var(--bad); }
+  @media (max-width: 760px) { .evidence { padding: 4px 16px 16px; } }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .two { grid-template-columns: 1fr; } }
+  .card { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card .big { font-size: 34px; font-weight: 700; letter-spacing: -.03em; margin: 0 0 4px; }
+  .card .big.good { color: var(--good); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: s; }
+  @media (max-width: 760px) { .steps { grid-template-columns: 1fr; } }
+  .steps .card::before { counter-increment: s; content: "0" counter(s); display: block; color: var(--accent); font: 600 13px ui-monospace, Menlo, monospace; margin-bottom: 10px; }
   ul.caveats { color: var(--muted); font-size: 14px; padding-left: 20px; margin: 0; }
-  footer { margin-top: 44px; color: var(--muted); font-size: 14px; }
-  a { color: var(--accent); }
+  ul.caveats li { margin: 4px 0; }
+  .cta { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 28px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between; }
+  .cta h2 { margin: 0 0 4px; font-size: 24px; } .cta p { margin: 0; color: var(--muted); max-width: 52ch; }
+  .btn { display: inline-block; background: var(--ink); color: var(--bg); padding: 12px 20px; border-radius: 10px; text-decoration: none; font-weight: 600; white-space: nowrap; }
+  footer { padding: 44px 0 64px; color: var(--faint); font-size: 13px; }
+  footer p { overflow-wrap: anywhere; }
+  .row > summary > *, .row > .head > *, .stat, .card, .cta > * { min-width: 0; }
+  ul.caveats li { overflow-wrap: anywhere; }
+  .empty { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 28px; color: var(--muted); }
 </style>
 </head>
 <body>
-<main>
-  <div class="brand">Verity</div>
-  <h1>The host that bills you also reads the meter.</h1>
-  <p class="lede">Verity sends the same unannounced requests to every host of the same open model, then compares what came back and what was billed. Every number links to raw evidence anyone can re-check.</p>
+<div class="wrap">
+  <nav>
+    <div class="mark"><i></i>Verity</div>
+    <div class="links">
+      <a href="#results">Results</a>
+      <a href="#method">Method</a>
+      <a href="https://github.com/let-the-dreamers-rise/verity">GitHub</a>
+    </div>
+  </nav>
 
-  <p class="meta" id="meta"></p>
-  <div id="board" class="panel empty">
-    <h2>Loading the latest audit</h2>
-    <p>One moment.</p>
-  </div>
+  <header class="hero">
+    <p class="eyebrow" id="eyebrow">Independent audits of open-model hosts</p>
+    <h1 id="headline">The same model is not the same on every host.</h1>
+    <p class="lede" id="lede">Verity sends identical, unannounced requests to every host of the same open model, then publishes what came back, with the raw evidence.</p>
+    <div class="stats" id="stats" hidden></div>
+  </header>
 
-  <div id="caveats-wrap" hidden>
-    <h2 class="section">Read this before quoting a number</h2>
+  <section id="results">
+    <p class="kicker">Latest audit</p>
+    <h2>Tool calls, host by host</h2>
+    <p class="sub">Each host got the same requests asking the model to call a function. A call passes only if it picks the right function and its arguments fit the schema. Open a row to see what went wrong.</p>
+    <div id="models"><div class="empty">Loading the latest audit.</div></div>
+  </section>
+
+  <section id="notfound" hidden>
+    <p class="kicker">What we did not find</p>
+    <h2>We publish the clean results too</h2>
+    <div class="two" id="clean"></div>
+  </section>
+
+  <section id="method">
+    <p class="kicker">Method</p>
+    <h2>How a result is made</h2>
+    <p class="sub">Nothing here relies on trusting Verity. The requests are open, and every response is published.</p>
+    <div class="steps">
+      <div class="card"><h3>Same requests, every host</h3><p>One fixed set of requests goes to each host of a model at temperature 0, in shuffled order, with no announcement.</p></div>
+      <div class="card"><h3>Hosts are compared with each other</h3><p>Identical output must cost identical tokens. A tool call must fit its schema. Answers must finish. Peers set the baseline, not us.</p></div>
+      <div class="card"><h3>Evidence is public and hashed</h3><p>Every response is committed to the repository with a SHA-256, so any score can be recomputed and none can be quietly edited.</p></div>
+    </div>
+  </section>
+
+  <section id="caveats-wrap" hidden>
+    <p class="kicker">Limits</p>
+    <h2>Read this before quoting a number</h2>
     <ul class="caveats" id="caveats"></ul>
-  </div>
+  </section>
 
-  <h2 class="section">What gets measured</h2>
-  <div class="grid">
-    <div class="panel card"><h3>Token ratio</h3><p>Hosts are asked to repeat a fixed text. Identical output must cost the same tokens, so each host's billed count is divided by the median across hosts. Above 1.15 is flagged.</p></div>
-    <div class="panel card"><h3>Tool calls</h3><p>Share of function-calling requests that return the right tool with arguments that pass the schema. Below 90% is flagged.</p></div>
-    <div class="panel card"><h3>Cut-offs</h3><p>Share of long answers that came back empty or stopped before the requested end marker. Above 5% is flagged.</p></div>
-    <div class="panel card"><h3>Agreement</h3><p>How closely a host's answers at temperature 0 match the closest half of its peers. Low agreement can mean a different or squeezed model. Below 0.60 is flagged.</p></div>
-  </div>
+  <section>
+    <div class="cta">
+      <div>
+        <h2>Run one of these hosts, or build on them?</h2>
+        <p>Dispute a result, ask for a re-run after a fix, or ask to have your own endpoints and workloads checked. Open an issue and we reply in public.</p>
+      </div>
+      <a class="btn" href="https://github.com/let-the-dreamers-rise/verity/issues/new">Open an issue</a>
+    </div>
+  </section>
 
   <footer>
-    <p>A flag is a measurement that crossed a provisional threshold, not an accusation. Small samples and honest configuration differences can all cause one. Hosts can reply or dispute a result by opening an issue.</p>
-    <p><a href="https://github.com/let-the-dreamers-rise/verity">Method, code and raw evidence on GitHub</a></p>
+    <p>A flag is a measurement that crossed a provisional threshold, not an accusation. Small samples and honest configuration differences can cause one, and a host reached through a router is measured as that router returns it.</p>
+    <p class="mono" id="evidence"></p>
   </footer>
-</main>
+</div>
+
 <script>
 (async function () {
-  const board = document.getElementById("board");
+  const $ = (id) => document.getElementById(id);
   const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
-  const empty = (title, body) => { board.className = "panel empty"; board.replaceChildren(el("h2", "", title), el("p", "", body)); };
+  const modelsBox = $("models");
 
   let report = null;
   for (const url of ["data/latest.json", "../results/latest.json"]) {
     try { const r = await fetch(url, { cache: "no-store" }); if (r.ok) { report = await r.json(); break; } } catch (e) {}
   }
-  if (!report || !Array.isArray(report.endpoints) || report.endpoints.length === 0) {
-    empty("No audit has been published yet", "The first run is pending. This page shows measured results only, so it stays empty until there are real ones.");
+  const rows = report && Array.isArray(report.endpoints) ? report.endpoints.filter((s) => s.probes > 0) : [];
+  if (rows.length === 0) {
+    modelsBox.replaceChildren(el("div", "empty", "No audit has been published yet. This page shows measured results only, so it stays empty until there are real ones."));
     return;
   }
 
-  const day = String(report.startedAt).slice(0, 10);
-  const meta = document.getElementById("meta");
-  meta.textContent = "Audit of " + day + " UTC · " + report.probeCount + " probes per host";
-  if (report.evidence) {
-    meta.append(" · evidence ");
-    const a = el("a", "", "raw/" + day + ".json"); a.href = "data/" + report.evidence.file; meta.append(a);
-    meta.append(" · sha256 " + report.evidence.sha256);
+  const day = new Date(report.startedAt);
+  const dayText = day.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  const pretty = (m) => ({ "llama-3.3-70b": "Llama 3.3 70B", "gemma-4-31b": "Gemma 4 31B" }[m] || m);
+  const toolRows = (list) => list.filter((s) => s.toolCallsScored > 0);
+  const failing = (s) => s.toolCallAccuracy != null && s.toolCallAccuracy < 0.9;
+
+  const byModel = new Map();
+  for (const s of rows) { if (!byModel.has(s.model)) byModel.set(s.model, []); byModel.get(s.model).push(s); }
+  const groups = [...byModel.entries()].map(([model, list]) => ({ model, list, tested: toolRows(list), bad: toolRows(list).filter(failing) }))
+    .sort((a, b) => b.bad.length - a.bad.length || b.list.length - a.list.length);
+
+  // Headline comes from the data, never from a template that could outlive it.
+  const worst = groups[0];
+  const eyebrow = $("eyebrow");
+  eyebrow.replaceChildren(el("b", "", "● "), document.createTextNode("Audit of " + dayText + " · " + rows.length + " hosts measured"));
+  if (worst && worst.bad.length > 0) {
+    const h = $("headline");
+    h.replaceChildren(document.createTextNode("Same model. " + worst.tested.length + " hosts. "), el("em", "", worst.bad.length + " break tool calls."));
+    $("lede").textContent = "We sent identical function-calling requests to every host of " + pretty(worst.model) + ". " +
+      (worst.tested.length - worst.bad.length) + " returned valid calls. " + worst.bad.length +
+      " returned wrong argument types, rejected the request, or ignored the tools and invented an answer. Your agent breaks, and nothing tells you why.";
+  } else {
+    $("lede").textContent = "In the latest audit every measured host returned valid tool calls. The full results and raw evidence are below.";
   }
 
-  const T = { availability: 0.95, toolCallAccuracy: 0.9, truncationRate: 0.05, tokenRatio: 1.15, similarity: 0.6 };
+  const sent = report.endpoints.reduce((n, s) => n + s.probes + (s.rateLimited || 0), 0);
+  const billed = rows.filter((s) => s.tokenRatio != null);
+  const overBilled = billed.filter((s) => s.tokenRatio > 1.15).length;
+  const stats = $("stats");
+  [[rows.length, "hosts measured"], [sent, "requests sent"], [groups.reduce((n, g) => n + g.bad.length, 0), "hosts failing tool calls"], [overBilled, "hosts over-billing tokens"]]
+    .forEach(([n, l]) => { const d = el("div", "stat"); d.append(el("div", "n", String(n)), el("div", "l", l)); stats.append(d); });
+  stats.hidden = false;
+
   const pct = (v) => v == null ? "n/a" : Math.round(v * 100) + "%";
-  const num = (v) => v == null ? "n/a" : v.toFixed(2);
-  const cell = (text, isBad) => el("td", isBad ? "bad" : "", text);
+  modelsBox.replaceChildren();
+  for (const g of groups) {
+    const box = el("div", "model");
+    const head = el("header");
+    head.append(el("h3", "", pretty(g.model)));
+    const v = el("div", "verdict");
+    if (g.bad.length) { v.append(el("b", "bad", g.bad.length + " of " + g.tested.length + " hosts"), document.createTextNode(" fail tool calls")); }
+    else { v.append(el("b", "good", "All " + g.tested.length + " hosts"), document.createTextNode(" return valid tool calls")); }
+    head.append(v); box.append(head);
+    const ch = el("div", "colhead");
+    ["Host", "Valid tool calls", "Answered", "Billing", "Latency", ""].forEach((t) => ch.append(el("span", "", t)));
+    box.append(ch);
 
-  const table = el("table");
-  const head = el("tr");
-  ["Host", "Answered", "Tool calls", "Cut off", "Token ratio", "Agreement", "Median latency", "Verdict"].forEach((h) => head.append(el("th", "", h)));
-  const thead = el("thead"); thead.append(head); table.append(thead);
-  const tbody = el("tbody");
-  const rows = report.endpoints.filter((s) => s.probes > 0).sort((a, b) => a.flags.length - b.flags.length || a.host.localeCompare(b.host));
-  for (const s of rows) {
-    const tr = el("tr");
-    const first = el("td", "host", s.host);
-    first.append(el("span", "sub", s.model + (s.via && s.via !== s.host ? " · via " + s.via : "") + (s.reference ? " · reference" : "")));
-    tr.append(first,
-      cell(pct(s.availability), s.availability < T.availability),
-      cell(pct(s.toolCallAccuracy), s.toolCallAccuracy != null && s.toolCallAccuracy < T.toolCallAccuracy),
-      cell(pct(s.truncationRate), s.truncationRate != null && s.truncationRate > T.truncationRate),
-      cell(num(s.tokenRatio), s.tokenRatio != null && s.tokenRatio > T.tokenRatio),
-      cell(num(s.similarity), s.similarity != null && s.similarity < T.similarity),
-      cell(s.medianLatencyMs == null ? "n/a" : Math.round(s.medianLatencyMs) + " ms", false));
-    const verdict = el("td");
-    if (s.flags.length === 0) verdict.append(el("span", "tag ok", "no flags"));
-    else s.flags.forEach((f) => verdict.append(el("span", "tag bad", f)));
-    tr.append(verdict); tbody.append(tr);
+    const sorted = [...g.list].sort((a, b) => (b.toolCallAccuracy ?? -1) - (a.toolCallAccuracy ?? -1) || a.host.localeCompare(b.host));
+    for (const s of sorted) {
+      const acc = s.toolCallAccuracy;
+      const tone = acc == null ? "" : acc >= 0.9 ? "good" : acc >= 0.5 ? "warn" : "bad";
+      const hasEvidence = Array.isArray(s.toolFailures) && s.toolFailures.length > 0;
+      const row = el(hasEvidence ? "details" : "div", "row");
+      const sum = el(hasEvidence ? "summary" : "div", hasEvidence ? "" : "head");
+      const host = el("div", "host", s.host);
+      const thin = s.toolCallsScored > 0 && s.toolCallsScored < 10;
+      host.append(el("small", "", "via " + s.via + (thin ? " · thin sample" : "")));
+      const meter = el("div", "meter " + tone);
+      if (s.toolCallsScored > 0) {
+        const bar = el("div", "bar"); const fill = el("i"); fill.style.width = Math.max(acc * 100, 2) + "%"; bar.append(fill);
+        meter.append(bar, el("div", "frac", s.toolCallsPassed + " of " + s.toolCallsScored));
+      } else { meter.append(el("div", "frac", "not measured")); }
+      const mk = (label, text, flag) => { const c = el("div", "cell" + (flag ? " flag" : "")); c.append(el("small", "", label), document.createTextNode(text)); return c; };
+      sum.append(host, meter,
+        mk("Answered", pct(s.availability), s.availability < 0.95),
+        mk("Billing", s.tokenRatio == null ? "n/a" : s.tokenRatio.toFixed(2) + "×", s.tokenRatio != null && s.tokenRatio > 1.15),
+        mk("Latency", s.medianLatencyMs == null ? "n/a" : (s.medianLatencyMs / 1000).toFixed(1) + " s", false),
+        el("div", "chev", hasEvidence ? "›" : ""));
+      row.append(sum);
+      if (hasEvidence) {
+        const ev = el("div", "evidence");
+        const failed = s.toolCallsScored - s.toolCallsPassed;
+        ev.append(el("p", "note", "Showing " + s.toolFailures.length + " of " + failed + " failed calls. Every response is in the raw evidence file."));
+        for (const f of s.toolFailures) {
+          const dl = el("dl", "case");
+          dl.append(el("dt", "", "We asked"), el("dd", "", f.asked), el("dt", "", "The host returned"), el("dd", "mono", f.got), el("dt", "", "Why it fails"), el("dd", "why", f.why));
+          ev.append(dl);
+        }
+        row.append(ev);
+      }
+      box.append(row);
+    }
+    modelsBox.append(box);
   }
-  table.append(tbody);
-  if (rows.length === 0) { empty("The last run reached no hosts", "No host answered a probe, so there is nothing to show."); return; }
-  const scroll = el("div", "scroll"); scroll.append(table);
-  board.className = "panel"; board.replaceChildren(scroll);
+
+  // Clean findings get the same billing as the bad ones.
+  const clean = $("clean");
+  if (billed.length > 0 && overBilled === 0) {
+    const c = el("div", "card"); c.append(el("div", "big good", "0 of " + billed.length), el("h3", "", "hosts over-billed tokens"),
+      el("p", "", "Every host billed the same number of tokens for byte-identical output. We looked for padding and did not find it."));
+    clean.append(c);
+  }
+  const sims = rows.filter((s) => s.similarity != null);
+  const drift = sims.filter((s) => s.similarity < 0.6).length;
+  if (sims.length > 0 && drift === 0) {
+    const c = el("div", "card"); c.append(el("div", "big good", "0 of " + sims.length), el("h3", "", "hosts looked like a different model"),
+      el("p", "", "At temperature 0, every host's answers stayed close to its peers. Nothing here suggests a swapped or heavily squeezed model."));
+    clean.append(c);
+  }
+  if (clean.children.length) $("notfound").hidden = false;
 
   if (Array.isArray(report.caveats) && report.caveats.length) {
-    const ul = document.getElementById("caveats");
-    report.caveats.forEach((c) => ul.append(el("li", "", c)));
-    document.getElementById("caveats-wrap").hidden = false;
+    const ul = $("caveats"); report.caveats.forEach((c) => ul.append(el("li", "", c)));
+    const routers = [...new Set(rows.map((s) => s.via).filter((v) => v && v !== "direct"))];
+    if (routers.length) ul.append(el("li", "", "Hosts were reached through " + routers.join(" and ") + ", so a failure may sit with the host or with the router."));
+    $("caveats-wrap").hidden = false;
+  }
+  if (report.evidence) {
+    const p = $("evidence"); const a = el("a", "", report.evidence.file); a.href = "data/" + report.evidence.file;
+    p.append("Evidence: ", a, " · sha256 " + report.evidence.sha256);
   }
 })();
 </script>

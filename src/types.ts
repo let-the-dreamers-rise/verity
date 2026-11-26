@@ -93,6 +93,10 @@ export interface EndpointScore {
   availability: number;
   /** Share of tool probes with a valid, schema-correct call to the right tool. */
   toolCallAccuracy: number | null;
+  toolCallsPassed: number;
+  toolCallsScored: number;
+  /** A sample of failed tool calls: what was asked, what came back, and why it failed. */
+  toolFailures: { probeId: string; asked: string; got: string; why: string }[];
   /** Share of long probes that were cut off or came back empty. */
   truncationRate: number | null;
   /** Billed completion tokens divided by the cross-host median, on identical outputs. 1.0 = in line. */
