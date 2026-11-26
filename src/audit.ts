@@ -49,6 +49,13 @@ export async function runAudit(
     }),
   );
   const observations = perEndpoint.flat();
+  return { report: buildReport(active, probes, observations, startedAt, new Date().toISOString()), observations };
+}
+
+/** Score a set of observations into a report. Also used to re-score stored raw evidence. */
+export function buildReport(
+  active: Endpoint[], probes: Probe[], observations: Observation[], startedAt: string, finishedAt: string,
+): AuditReport {
   const scored = scoreEndpoints(active, probes, observations);
   const skipped = scored.filter((sc) => sc.setupError !== null);
   const scores = scored.filter((sc) => sc.setupError === null);
@@ -66,20 +73,10 @@ export async function runAudit(
   }
 
   for (const sc of scores) {
-    if (sc.rateLimited > 0) caveats.push(`${sc.endpointId}: ${sc.rateLimited} call(s) hit our rate limit or credit limit and were left out of its scores.`);
+    if (sc.rateLimited > 0) caveats.push(`${sc.endpointId}: ${sc.rateLimited} call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).`);
   }
 
-  return {
-    report: {
-      schema: 1,
-      startedAt,
-      finishedAt: new Date().toISOString(),
-      probeCount: probes.length,
-      endpoints: scores,
-      caveats,
-    },
-    observations,
-  };
+  return { schema: 1, startedAt, finishedAt, probeCount: probes.length, endpoints: scores, caveats };
 }
 
 export function sha256(text: string): string {

@@ -201,6 +201,15 @@ export function similarities(
   return out;
 }
 
+/**
+ * Calls that say nothing about the host's quality: our quota or credit ran out (429, 402),
+ * or the router stopped offering this model on this host mid-run.
+ */
+export function isUnscored(o: Observation): boolean {
+  return o.status === 429 || o.status === 402 ||
+    (o.status === 400 && /not supported by provider/i.test(o.error ?? ""));
+}
+
 export function scoreEndpoints(
   endpoints: Endpoint[], probes: Probe[], observations: Observation[],
 ): EndpointScore[] {
@@ -214,7 +223,7 @@ export function scoreEndpoints(
     const refused = all.length > 0 && all.every((o) => o.status >= 400 && o.status < 500);
     const setupError = refused ? (all[0].error ?? `HTTP ${all[0].status}`) : null;
     // 429 and 402 say our key ran out of quota or credit, not that the host failed: left unscored.
-    const obs = refused ? [] : all.filter((o) => o.status !== 429 && o.status !== 402);
+    const obs = refused ? [] : all.filter((o) => !isUnscored(o));
     const usable = obs.filter((o) => o.ok && (o.text.trim() !== "" || o.toolCalls.length > 0));
     const toolObs = obs.filter((o) => probeById.get(o.probeId)?.kind === "tool");
     const longObs = obs.filter((o) => probeById.get(o.probeId)?.kind === "long");
@@ -228,7 +237,7 @@ export function scoreEndpoints(
       model: ep.model,
       reference: !!ep.reference,
       probes: obs.length,
-      rateLimited: all.filter((o) => o.status === 429 || o.status === 402).length,
+      rateLimited: refused ? 0 : all.filter(isUnscored).length,
       setupError,
       availability: round(obs.length ? usable.length / obs.length : 0)!,
       toolCallAccuracy: round(toolObs.length ? toolPass / toolObs.length : null),
