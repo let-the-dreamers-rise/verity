@@ -40,6 +40,12 @@ const { report, observations } = await runAudit(endpoints, probes, {
   },
 });
 
+if (report.endpoints.every((s) => s.probes === 0)) {
+  console.error("No host was measured, so nothing is published:");
+  for (const c of report.caveats) console.error(`  ${c}`);
+  process.exit(1);
+}
+
 const day = report.startedAt.slice(0, 10);
 mkdirSync(join(outDir, "raw"), { recursive: true });
 const rawText = JSON.stringify(observations, null, 1);

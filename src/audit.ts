@@ -49,16 +49,19 @@ export async function runAudit(
     }),
   );
   const observations = perEndpoint.flat();
-  const scores = scoreEndpoints(active, probes, observations);
+  const scored = scoreEndpoints(active, probes, observations);
+  const skipped = scored.filter((sc) => sc.setupError !== null);
+  const scores = scored.filter((sc) => sc.setupError === null);
 
   const caveats = [
     "Thresholds are provisional until a noise band is measured per host.",
     "Only open-weight models are audited; closed models cannot be re-run by a third party.",
     "A flag is a lead to investigate, not proof of wrongdoing.",
   ];
-  const models = new Set(active.map((e) => e.model));
+  for (const sc of skipped) caveats.push(`${sc.endpointId}: not measured, the request was refused (${sc.setupError}).`);
+  const models = new Set(scores.map((e) => e.model));
   for (const m of models) {
-    const n = active.filter((e) => e.model === m).length;
+    const n = scores.filter((e) => e.model === m).length;
     if (n < 3) caveats.push(`${m}: only ${n} host(s) audited, so token ratio is not computed (needs 3).`);
   }
 

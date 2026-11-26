@@ -87,6 +87,8 @@ export interface EndpointScore {
   probes: number;
   /** Calls answered with HTTP 429; these are excluded from every rate. */
   rateLimited: number;
+  /** Set when every call was refused with a 4xx: our setup is wrong, the host was not measured. */
+  setupError: string | null;
   /** Share of probes that returned a usable response at all. */
   availability: number;
   /** Share of tool probes with a valid, schema-correct call to the right tool. */

@@ -78,3 +78,15 @@ test("shuffled is deterministic and keeps every item", () => {
 test("sha256 matches a known vector", () => {
   assert.equal(sha256("abc"), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 });
+
+test("an endpoint refused on every call is reported as not measured, not as a bad host", async () => {
+  const refused = (async () => new Response(
+    JSON.stringify({ error: { message: "model not supported" }, user_id: "user_private" }), { status: 400 },
+  )) as typeof fetch;
+  const { report, observations } = await runAudit([endpoint("wrong")], probes.slice(0, 3), {
+    delayMs: 0, fetchImpl: refused, getKey: () => "k",
+  });
+  assert.equal(report.endpoints.length, 0);
+  assert.ok(report.caveats.some((c) => c.includes("not measured") && c.includes("model not supported")));
+  assert.equal(JSON.stringify(observations).includes("user_private"), false);
+});

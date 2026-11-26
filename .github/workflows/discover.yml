@@ -1,0 +1,18 @@
+name: Discover hosts
+# Prints which hosts currently serve which open models. Sends no prompts.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: node src/discover.ts

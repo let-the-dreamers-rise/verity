@@ -33,7 +33,7 @@ export async function runProbe(
     const latencyMs = Math.round(performance.now() - started);
     const raw = await res.text();
     if (!res.ok) {
-      return { ...base, status: res.status, latencyMs, error: raw.slice(0, 300) };
+      return { ...base, status: res.status, latencyMs, error: errorMessage(raw) };
     }
     return { ...parseCompletion(raw, base), status: res.status, latencyMs };
   } catch (err) {
@@ -43,6 +43,19 @@ export async function runProbe(
       error: err instanceof Error ? err.message : String(err),
     };
   }
+}
+
+/**
+ * Keep only the host's error message. Error bodies can carry account identifiers
+ * (OpenRouter returns a user_id), and raw evidence is public.
+ */
+export function errorMessage(raw: string): string {
+  try {
+    const json = JSON.parse(raw);
+    const msg = json?.error?.message ?? json?.message ?? json?.error;
+    if (typeof msg === "string") return msg.slice(0, 300);
+  } catch {}
+  return "error body withheld (not a JSON error message)";
 }
 
 /** Parse a chat completion body. A 200 with an unparseable or empty body is recorded, not thrown. */

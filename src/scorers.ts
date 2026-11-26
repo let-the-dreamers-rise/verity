@@ -207,8 +207,12 @@ export function scoreEndpoints(
   const sims = similarities(endpoints, probes, observations);
   return endpoints.map((ep) => {
     const all = observations.filter((o) => o.endpointId === ep.id);
+    // If every call was refused with a 4xx, the endpoint is set up wrong on our side
+    // (bad model id, key without access). That is not a measurement of the host.
+    const refused = all.length > 0 && all.every((o) => o.status >= 400 && o.status < 500);
+    const setupError = refused ? (all[0].error ?? `HTTP ${all[0].status}`) : null;
     // A 429 says our key ran out of quota, not that the host failed, so it is left unscored.
-    const obs = all.filter((o) => o.status !== 429);
+    const obs = refused ? [] : all.filter((o) => o.status !== 429);
     const usable = obs.filter((o) => o.ok && (o.text.trim() !== "" || o.toolCalls.length > 0));
     const toolObs = obs.filter((o) => probeById.get(o.probeId)?.kind === "tool");
     const longObs = obs.filter((o) => probeById.get(o.probeId)?.kind === "long");
@@ -222,7 +226,8 @@ export function scoreEndpoints(
       model: ep.model,
       reference: !!ep.reference,
       probes: obs.length,
-      rateLimited: all.length - obs.length,
+      rateLimited: all.filter((o) => o.status === 429).length,
+      setupError,
       availability: round(obs.length ? usable.length / obs.length : 0)!,
       toolCallAccuracy: round(toolObs.length ? toolPass / toolObs.length : null),
       truncationRate: round(longObs.length ? longFail / longObs.length : null),
