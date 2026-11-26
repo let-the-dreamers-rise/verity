@@ -19,7 +19,7 @@ Thresholds are provisional and live in `src/scorers.ts`.
 ## Limits, stated up front
 
 - A flag is a measurement that crossed a threshold. It is not proof of intent, and it is not an accusation.
-- The default probe set is small (24 probes) and public, so a host could special-case it. Serious runs add a private probe set through `VERITY_PROBES_FILE`.
+- The default probe set is small (36 probes) and public, so a host could special-case it. Serious runs add a private probe set through `VERITY_PROBES_FILE`.
 - Free tiers are rate limited. Calls answered with HTTP 429 are left out of every score, and the report says how many there were, so a thin run is visible as thin.
 - Honest hosts can differ at temperature 0 because of hardware, quantization or sampling defaults. Agreement is a signal to investigate, not a verdict.
 - Hosts reached through a router (OpenRouter, the Hugging Face router) are measured as that router bills and returns them.

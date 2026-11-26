@@ -77,6 +77,18 @@ const toolPrompts: { ask: string; tool: string }[] = [
   { ask: "Please log a low priority ticket: the footer copyright year is out of date. Tag it website.", tool: "create_ticket" },
   { ask: "Book 45 minutes with dana@example.com and li@example.com to review the Q3 roadmap.", tool: "schedule_meeting" },
   { ask: "Set up a 30 minute onboarding call with sam@example.com.", tool: "schedule_meeting" },
+  { ask: "How hot is it in Nairobi? Celsius please.", tool: "get_weather" },
+  { ask: "I'm flying to Reykjavik tonight. Check the weather there in fahrenheit.", tool: "get_weather" },
+  { ask: "Check the current weather in Sao Paulo in celsius before I pack.", tool: "get_weather" },
+  { ask: "Do I need an umbrella in Mumbai right now? Report in celsius.", tool: "get_weather" },
+  { ask: "File a medium priority ticket titled 'Invoice PDF shows wrong currency'. Tags: billing, pdf, export.", tool: "create_ticket" },
+  { ask: "Users can't reset their passwords. Raise a high priority ticket tagged auth.", tool: "create_ticket" },
+  { ask: "Create a low priority ticket for the typo on the pricing page, tagged website and copy.", tool: "create_ticket" },
+  { ask: "The nightly backup job failed twice this week. Open a medium priority ticket with the tags infra and backups.", tool: "create_ticket" },
+  { ask: "Schedule a 60 minute incident review with ops@example.com, mei@example.com and raj@example.com.", tool: "schedule_meeting" },
+  { ask: "Put 15 minutes on the calendar with jo@example.com for a quick budget check.", tool: "schedule_meeting" },
+  { ask: "Arrange a 90 minute design workshop with ana@example.com and tom@example.com.", tool: "schedule_meeting" },
+  { ask: "Book a 20 minute vendor intro with kim@example.com.", tool: "schedule_meeting" },
 ];
 
 const longPrompts: string[] = [

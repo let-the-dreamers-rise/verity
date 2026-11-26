@@ -24,9 +24,10 @@ function fakeFetch(calls: string[]): typeof fetch {
       message = { content: echo[1] };
       tokens = Math.ceil(echo[1].length / 4);
     } else if (body.tools && host !== "padder") {
-      const args = user.includes("weather") || user.includes("cold")
+      const want = probes.find((p) => p.messages.at(-1)!.content === user)?.expectTool;
+      const args = want === "get_weather"
         ? { name: "get_weather", arguments: JSON.stringify({ city: "X", unit: "celsius" }) }
-        : user.includes("ticket")
+        : want === "create_ticket"
           ? { name: "create_ticket", arguments: JSON.stringify({ title: "t", priority: "low", tags: ["a"] }) }
           : { name: "schedule_meeting", arguments: JSON.stringify({ topic: "t", duration_minutes: 30, attendees: ["a@b.c"] }) };
       message = { content: null, tool_calls: [{ function: args }] };
