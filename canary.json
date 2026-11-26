@@ -1,0 +1,4 @@
+{
+  "listener": "",
+  "note": "Base URL of the deployed listener (listener/). Bait links and keys in probes point here."
+}

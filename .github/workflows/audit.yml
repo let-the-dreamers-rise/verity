@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  id-token: write
 concurrency:
   group: audit
   cancel-in-progress: false
@@ -50,7 +51,7 @@ jobs:
             echo "No new results."
           else
             git commit -m "Audit results $(date -u +%F)"
-            git push
+            git pull --rebase && git push
           fi
   board:
     needs: audit

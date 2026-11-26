@@ -24,6 +24,21 @@ Thresholds are provisional and live in `src/scorers.ts`.
 - Honest hosts can differ at temperature 0 because of hardware, quantization or sampling defaults. Agreement is a signal to investigate, not a verdict.
 - Hosts reached through a router (OpenRouter, the Hugging Face router) are measured as that router bills and returns them.
 
+## Data-handling audits (in progress)
+
+Quality checks tell you whether a host serves the model it claims. They do not tell you what happens to your prompts afterwards. In November 2026 a canary study found several inference providers whose baited prompts, including zero-data-retention traffic, were later used by someone else, and OpenRouter pulled 125 endpoints from its zero-data-retention pool. Verity's main line of work is now measuring that, continuously and per host.
+
+How it works:
+
+1. Each run makes fresh, unique bait for every host: a document link and a fake API key that point at the Verity listener. The bait sits inside an ordinary-looking prompt.
+2. Only SHA-256 hashes of the bait are published (`results/canary/seeds/`). Their Merkle root is written to Solana before a single prompt is sent, so nobody, including Verity, can later claim a hit came from a host that was never sent that bait.
+3. The listener (`listener/`) records any request that carries a bait token: which token, which route (link or key), when, and from where. A hit means the prompt left the host's serving path and was read or used by something.
+4. A host with a hit is told privately first, with the evidence, and the result is published after a notice period.
+
+What a hit does and does not prove: it proves the exact text sent only to that host was later acted on. It does not by itself say who acted on it or why (a logging vendor, a crawler that follows links in logs, a trained model, a breach). A run with no hits is weak evidence of good handling, not proof of it.
+
+Run it: `node src/seed.ts --selftest --per-endpoint 3` (or the Canary workflow). The `--selftest` seed is fetched by Verity itself, so the board can show the listener is working.
+
 ## Run it
 
 Needs Node 22.18 or newer. There are no dependencies to install.
@@ -52,7 +67,7 @@ Each run writes:
 ## Roadmap
 
 - Wider coverage: more models, more hosts, paid tiers, a private rotating probe set.
-- Anchor each day's evidence hash on Solana so results cannot be quietly rewritten.
+- Anchor each day's evidence hash on Solana (built; needs a funded signing key in the listener).
 - Pay for probes anonymously over x402 so hosts cannot recognise the auditor.
 - Later: hosts post a USDC bond against their published numbers, with refunds to buyers when an audit shows a miss.
 
