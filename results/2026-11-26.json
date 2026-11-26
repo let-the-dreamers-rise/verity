@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "startedAt": "2026-11-26T21:50:43.936Z",
+  "finishedAt": "2026-11-26T21:51:21.781Z",
+  "probeCount": 24,
+  "endpoints": [
+    {
+      "endpointId": "openrouter/llama-3.3-70b-free",
+      "host": "OpenRouter free pool",
+      "via": "openrouter",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 24,
+      "rateLimited": 0,
+      "availability": 0,
+      "toolCallAccuracy": 0,
+      "truncationRate": 1,
+      "tokenRatio": null,
+      "similarity": null,
+      "medianLatencyMs": null,
+      "flags": [
+        "low availability",
+        "tool calls failing",
+        "answers cut off or empty"
+      ]
+    },
+    {
+      "endpointId": "hf/together/llama-3.3-70b",
+      "host": "Together",
+      "via": "hf-router",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 24,
+      "rateLimited": 0,
+      "availability": 0,
+      "toolCallAccuracy": 0,
+      "truncationRate": 1,
+      "tokenRatio": null,
+      "similarity": null,
+      "medianLatencyMs": null,
+      "flags": [
+        "low availability",
+        "tool calls failing",
+        "answers cut off or empty"
+      ]
+    },
+    {
+      "endpointId": "hf/fireworks/llama-3.3-70b",
+      "host": "Fireworks",
+      "via": "hf-router",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 24,
+      "rateLimited": 0,
+      "availability": 0,
+      "toolCallAccuracy": 0,
+      "truncationRate": 1,
+      "tokenRatio": null,
+      "similarity": null,
+      "medianLatencyMs": null,
+      "flags": [
+        "low availability",
+        "tool calls failing",
+        "answers cut off or empty"
+      ]
+    },
+    {
+      "endpointId": "hf/nebius/llama-3.3-70b",
+      "host": "Nebius",
+      "via": "hf-router",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 24,
+      "rateLimited": 0,
+      "availability": 0,
+      "toolCallAccuracy": 0,
+      "truncationRate": 1,
+      "tokenRatio": null,
+      "similarity": null,
+      "medianLatencyMs": null,
+      "flags": [
+        "low availability",
+        "tool calls failing",
+        "answers cut off or empty"
+      ]
+    },
+    {
+      "endpointId": "hf/novita/llama-3.3-70b",
+      "host": "Novita",
+      "via": "hf-router",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 24,
+      "rateLimited": 0,
+      "availability": 0,
+      "toolCallAccuracy": 0,
+      "truncationRate": 1,
+      "tokenRatio": null,
+      "similarity": null,
+      "medianLatencyMs": null,
+      "flags": [
+        "low availability",
+        "tool calls failing",
+        "answers cut off or empty"
+      ]
+    }
+  ],
+  "caveats": [
+    "Thresholds are provisional until a noise band is measured per host.",
+    "Only open-weight models are audited; closed models cannot be re-run by a third party.",
+    "A flag is a lead to investigate, not proof of wrongdoing."
+  ],
+  "evidence": {
+    "file": "raw/2026-11-26.json",
+    "sha256": "19515f7e31e627482b0f73c0c4621c09f7759322db72137b32d0144cf1cf30c3"
+  }
+}
