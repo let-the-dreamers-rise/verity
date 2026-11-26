@@ -10,7 +10,7 @@ export async function runProbe(
   const body: Record<string, unknown> = {
     model: ep.modelName,
     messages: probe.messages,
-    max_tokens: probe.maxTokens,
+    max_tokens: Math.round(probe.maxTokens * (ep.maxTokensFactor ?? 1)),
     temperature: 0,
     seed: 7,
     stream: false,

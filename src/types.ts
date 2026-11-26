@@ -18,6 +18,11 @@ export interface Endpoint {
   extraBody?: Record<string, unknown>;
   /** True for the endpoint we treat as the reference for this model. */
   reference?: boolean;
+  /** Reasoning model: hidden thinking spends tokens, so budgets are raised and only
+   *  hosts that report reasoning tokens separately are compared on billing. */
+  reasoning?: boolean;
+  /** Multiplies every probe's max_tokens (reasoning models need room to think). */
+  maxTokensFactor?: number;
 }
 
 export type ProbeKind = "echo" | "tool" | "long" | "fingerprint";

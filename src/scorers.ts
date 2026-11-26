@@ -144,11 +144,14 @@ export function tokenRatios(
   const models = new Set(endpoints.map((e) => e.model));
   for (const model of models) {
     const ids = new Set(endpoints.filter((e) => e.model === model).map((e) => e.id));
+    const reasoningIds = new Set(endpoints.filter((e) => e.model === model && e.reasoning).map((e) => e.id));
     for (const probe of probes.filter((p) => p.kind === "echo" && p.expectText)) {
       const exact = observations.filter(
         (o) =>
           ids.has(o.endpointId) && o.probeId === probe.id && o.ok &&
           o.completionTokens !== null && o.completionTokens > 0 &&
+          // A reasoning host that does not split out thinking tokens cannot be compared fairly.
+          !(reasoningIds.has(o.endpointId) && o.reasoningTokens === null) &&
           o.text.trim() === probe.expectText!.trim(),
       );
       if (exact.length < 3) continue;

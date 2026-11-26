@@ -1,0 +1,33 @@
+name: Verity endpoint check
+description: Check that an OpenAI-compatible endpoint returns valid tool calls and complete answers. Fails the job below the threshold.
+branding:
+  icon: check-circle
+  color: blue
+inputs:
+  base-url:
+    description: Endpoint base URL, ending in /v1
+    required: true
+  model:
+    description: Model name the endpoint expects
+    required: true
+  api-key:
+    description: API key for the endpoint. Pass it from a secret.
+    required: true
+  min-tool-accuracy:
+    description: Lowest share of valid tool calls that still passes (0 to 1)
+    required: false
+    default: "0.9"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v5
+      with:
+        node-version: 22
+    - shell: bash
+      env:
+        VERITY_API_KEY: ${{ inputs.api-key }}
+      run: >
+        node "$GITHUB_ACTION_PATH/src/check.ts"
+        --base-url "${{ inputs.base-url }}"
+        --model "${{ inputs.model }}"
+        --min-tool-accuracy "${{ inputs.min-tool-accuracy }}"

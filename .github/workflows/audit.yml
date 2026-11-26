@@ -34,6 +34,13 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: node src/cli.ts --skip-if-no-keys
+      - name: Anchor the evidence on Solana
+        if: hashFiles('results/latest.json') != ''
+        continue-on-error: true
+        env:
+          SOLANA_RPC: ${{ secrets.SOLANA_RPC }}
+          SOLANA_SECRET_KEY: ${{ secrets.SOLANA_SECRET_KEY }}
+        run: node src/anchor.ts
       - name: Commit results
         run: |
           git config user.name "verity-audit"

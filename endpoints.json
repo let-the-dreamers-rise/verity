@@ -124,5 +124,117 @@
     "keyEnv": "OPENROUTER_API_KEY",
     "model": "gemma-4-31b",
     "modelName": "google/gemma-4-31b-it:free"
+  },
+  {
+    "id": "hf/groq/gpt-oss-120b",
+    "host": "Groq",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:groq",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/cerebras/gpt-oss-120b",
+    "host": "Cerebras",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:cerebras",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/together/gpt-oss-120b",
+    "host": "Together AI",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:together",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/fireworks-ai/gpt-oss-120b",
+    "host": "Fireworks AI",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:fireworks-ai",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/deepinfra/gpt-oss-120b",
+    "host": "DeepInfra",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:deepinfra",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/nebius/gpt-oss-120b",
+    "host": "Nebius",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:nebius",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/sambanova/gpt-oss-120b",
+    "host": "SambaNova",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:sambanova",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
+  },
+  {
+    "id": "hf/baseten/gpt-oss-120b",
+    "host": "Baseten",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gpt-oss-120b",
+    "modelName": "openai/gpt-oss-120b:baseten",
+    "reasoning": true,
+    "maxTokensFactor": 4,
+    "extraBody": {
+      "reasoning_effort": "low"
+    }
   }
 ]

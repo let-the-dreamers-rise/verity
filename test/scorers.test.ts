@@ -179,3 +179,13 @@ test("scoreEndpoints leaves rate-limited calls out of every rate", () => {
   assert.equal(s.toolCallAccuracy, null);
   assert.deepEqual(s.flags, []);
 });
+
+test("tokenRatios skips a reasoning host that hides its thinking tokens", () => {
+  const eps = ["a", "b", "c", "d"].map((id) => ep(id, { reasoning: true }));
+  const text = echoProbe.expectText!;
+  const o = ["a", "b", "c"].map((id) => obs({ endpointId: id, probeId: echoProbe.id, text, completionTokens: 60, reasoningTokens: 40 }));
+  o.push(obs({ endpointId: "d", probeId: echoProbe.id, text, completionTokens: 60, reasoningTokens: null }));
+  const r = tokenRatios(eps, [echoProbe], o);
+  assert.equal(r.has("d"), false);
+  assert.equal(r.get("a"), 1);
+});

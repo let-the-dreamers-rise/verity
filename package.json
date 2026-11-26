@@ -9,7 +9,8 @@
     "test": "node --test \"test/*.test.ts\"",
     "audit": "node src/cli.ts",
     "audit:dry": "node src/cli.ts --dry-run",
-    "discover": "node src/discover.ts"
+    "discover": "node src/discover.ts",
+    "check": "node src/check.ts"
   },
   "license": "MIT"
 }
