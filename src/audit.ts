@@ -66,7 +66,7 @@ export async function runAudit(
   }
 
   for (const sc of scores) {
-    if (sc.rateLimited > 0) caveats.push(`${sc.endpointId}: ${sc.rateLimited} call(s) were rate limited and left out of its scores.`);
+    if (sc.rateLimited > 0) caveats.push(`${sc.endpointId}: ${sc.rateLimited} call(s) hit our rate limit or credit limit and were left out of its scores.`);
   }
 
   return {

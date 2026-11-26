@@ -152,10 +152,12 @@ export function tokenRatios(
           o.text.trim() === probe.expectText!.trim(),
       );
       if (exact.length < 3) continue;
-      const med = median(exact.map((o) => o.completionTokens!))!;
+      // Hidden reasoning legitimately varies in length, so reported reasoning tokens are taken out.
+      const answer = (o: Observation) => Math.max(1, o.completionTokens! - (o.reasoningTokens ?? 0));
+      const med = median(exact.map(answer))!;
       for (const o of exact) {
         const list = perEndpoint.get(o.endpointId) ?? [];
-        list.push(o.completionTokens! / med);
+        list.push(answer(o) / med);
         perEndpoint.set(o.endpointId, list);
       }
     }
@@ -211,8 +213,8 @@ export function scoreEndpoints(
     // (bad model id, key without access). That is not a measurement of the host.
     const refused = all.length > 0 && all.every((o) => o.status >= 400 && o.status < 500);
     const setupError = refused ? (all[0].error ?? `HTTP ${all[0].status}`) : null;
-    // A 429 says our key ran out of quota, not that the host failed, so it is left unscored.
-    const obs = refused ? [] : all.filter((o) => o.status !== 429);
+    // 429 and 402 say our key ran out of quota or credit, not that the host failed: left unscored.
+    const obs = refused ? [] : all.filter((o) => o.status !== 429 && o.status !== 402);
     const usable = obs.filter((o) => o.ok && (o.text.trim() !== "" || o.toolCalls.length > 0));
     const toolObs = obs.filter((o) => probeById.get(o.probeId)?.kind === "tool");
     const longObs = obs.filter((o) => probeById.get(o.probeId)?.kind === "long");
@@ -226,7 +228,7 @@ export function scoreEndpoints(
       model: ep.model,
       reference: !!ep.reference,
       probes: obs.length,
-      rateLimited: all.filter((o) => o.status === 429).length,
+      rateLimited: all.filter((o) => o.status === 429 || o.status === 402).length,
       setupError,
       availability: round(obs.length ? usable.length / obs.length : 0)!,
       toolCallAccuracy: round(toolObs.length ? toolPass / toolObs.length : null),

@@ -85,7 +85,7 @@ export interface EndpointScore {
   model: string;
   reference: boolean;
   probes: number;
-  /** Calls answered with HTTP 429; these are excluded from every rate. */
+  /** Calls answered with HTTP 429 or 402 (our quota or credit ran out); excluded from every rate. */
   rateLimited: number;
   /** Set when every call was refused with a 4xx: our setup is wrong, the host was not measured. */
   setupError: string | null;

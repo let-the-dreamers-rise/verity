@@ -34,7 +34,7 @@ npm run audit:dry   # shows which endpoints have a key, sends nothing
 npm run audit       # runs every endpoint whose key is in the environment
 ```
 
-Endpoints are listed in `endpoints.json`. Each one names the environment variable that holds its key: `GROQ_API_KEY`, `CEREBRAS_API_KEY`, `OPENROUTER_API_KEY`, `HF_TOKEN`. Keys are read from the environment only and are never written to results.
+Endpoints are listed in `endpoints.json`. Each one names the environment variable that holds its key (today `HF_TOKEN` and `OPENROUTER_API_KEY`). `npm run discover` lists which hosts serve which models right now. Keys are read from the environment only and are never written to results.
 
 Each run writes:
 

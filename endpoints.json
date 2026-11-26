@@ -1,65 +1,128 @@
 [
   {
-    "id": "groq/llama-3.3-70b",
+    "id": "hf/akashml/llama-3.3-70b",
+    "host": "AkashML",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "llama-3.3-70b",
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:akashml"
+  },
+  {
+    "id": "hf/amazon-bedrock/llama-3.3-70b",
+    "host": "Amazon Bedrock",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "llama-3.3-70b",
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:amazon-bedrock"
+  },
+  {
+    "id": "hf/cloudflare/llama-3.3-70b",
+    "host": "Cloudflare",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "llama-3.3-70b",
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:cloudflare"
+  },
+  {
+    "id": "hf/coreweave/llama-3.3-70b",
+    "host": "CoreWeave",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "llama-3.3-70b",
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:coreweave"
+  },
+  {
+    "id": "hf/deepinfra/llama-3.3-70b",
+    "host": "DeepInfra",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "llama-3.3-70b",
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:deepinfra"
+  },
+  {
+    "id": "hf/groq/llama-3.3-70b",
     "host": "Groq",
-    "via": "direct",
-    "baseUrl": "https://api.groq.com/openai/v1",
-    "keyEnv": "GROQ_API_KEY",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
     "model": "llama-3.3-70b",
-    "modelName": "llama-3.3-70b-versatile"
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:groq"
   },
   {
-    "id": "cerebras/llama-3.3-70b",
-    "host": "Cerebras",
-    "via": "direct",
-    "baseUrl": "https://api.cerebras.ai/v1",
-    "keyEnv": "CEREBRAS_API_KEY",
+    "id": "hf/parasail/llama-3.3-70b",
+    "host": "Parasail",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
     "model": "llama-3.3-70b",
-    "modelName": "llama-3.3-70b"
+    "modelName": "meta-llama/Llama-3.3-70B-Instruct:parasail"
   },
   {
-    "id": "openrouter/llama-3.3-70b-free",
-    "host": "OpenRouter free pool",
-    "via": "openrouter",
+    "id": "hf/coreweave/gemma-4-31b",
+    "host": "CoreWeave",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31B-it:coreweave"
+  },
+  {
+    "id": "hf/crusoe/gemma-4-31b",
+    "host": "Crusoe",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31B-it:crusoe"
+  },
+  {
+    "id": "hf/deepinfra/gemma-4-31b",
+    "host": "DeepInfra",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31B-it:deepinfra"
+  },
+  {
+    "id": "hf/modal/gemma-4-31b",
+    "host": "Modal",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31B-it:modal"
+  },
+  {
+    "id": "hf/parasail/gemma-4-31b",
+    "host": "Parasail",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31B-it:parasail"
+  },
+  {
+    "id": "hf/venice/gemma-4-31b",
+    "host": "Venice",
+    "via": "Hugging Face router",
+    "baseUrl": "https://router.huggingface.co/v1",
+    "keyEnv": "HF_TOKEN",
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31B-it:venice"
+  },
+  {
+    "id": "openrouter/free/gemma-4-31b",
+    "host": "OpenRouter free tier",
+    "via": "OpenRouter",
     "baseUrl": "https://openrouter.ai/api/v1",
     "keyEnv": "OPENROUTER_API_KEY",
-    "model": "llama-3.3-70b",
-    "modelName": "meta-llama/llama-3.3-70b-instruct:free"
-  },
-  {
-    "id": "hf/together/llama-3.3-70b",
-    "host": "Together",
-    "via": "hf-router",
-    "baseUrl": "https://router.huggingface.co/v1",
-    "keyEnv": "HF_TOKEN",
-    "model": "llama-3.3-70b",
-    "modelName": "meta-llama/Llama-3.3-70B-Instruct:together"
-  },
-  {
-    "id": "hf/fireworks/llama-3.3-70b",
-    "host": "Fireworks",
-    "via": "hf-router",
-    "baseUrl": "https://router.huggingface.co/v1",
-    "keyEnv": "HF_TOKEN",
-    "model": "llama-3.3-70b",
-    "modelName": "meta-llama/Llama-3.3-70B-Instruct:fireworks-ai"
-  },
-  {
-    "id": "hf/nebius/llama-3.3-70b",
-    "host": "Nebius",
-    "via": "hf-router",
-    "baseUrl": "https://router.huggingface.co/v1",
-    "keyEnv": "HF_TOKEN",
-    "model": "llama-3.3-70b",
-    "modelName": "meta-llama/Llama-3.3-70B-Instruct:nebius"
-  },
-  {
-    "id": "hf/novita/llama-3.3-70b",
-    "host": "Novita",
-    "via": "hf-router",
-    "baseUrl": "https://router.huggingface.co/v1",
-    "keyEnv": "HF_TOKEN",
-    "model": "llama-3.3-70b",
-    "modelName": "meta-llama/Llama-3.3-70B-Instruct:novita"
+    "model": "gemma-4-31b",
+    "modelName": "google/gemma-4-31b-it:free"
   }
 ]
