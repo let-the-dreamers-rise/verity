@@ -138,6 +138,14 @@
     <div class="stats" id="stats" hidden></div>
   </header>
 
+  <section id="canary">
+    <p class="kicker">Data handling, live</p>
+    <h2>Do your prompts stay where you sent them?</h2>
+    <p class="sub">Every day each host gets prompts carrying one-time bait: a private document link and a fake API key that exist nowhere else. If anything ever opens that link or tries that key, the prompt left the host's serving path. The bait's hashes are made public before a single prompt is sent, so a hit cannot be invented after the fact.</p>
+    <div class="stats" id="canary-stats"><div class="stat"><div class="n">…</div><div class="l">Loading</div></div></div>
+    <p class="sub" id="canary-note" style="margin-top:18px"></p>
+  </section>
+
   <section id="results">
     <p class="kicker">Latest audit</p>
     <h2>Tool calls, host by host</h2>
@@ -310,6 +318,44 @@
   if (report.evidence) {
     const p = $("evidence"); const a = el("a", "", report.evidence.file); a.href = "data/" + report.evidence.file;
     p.append("Evidence: ", a, " · sha256 " + report.evidence.sha256);
+  }
+})();
+</script>
+<script>
+(async function () {
+  const box = document.getElementById("canary-stats"), note = document.getElementById("canary-note");
+  const stat = (n, l) => { const d = document.createElement("div"); d.className = "stat";
+    const a = document.createElement("div"); a.className = "n"; a.textContent = n;
+    const b = document.createElement("div"); b.className = "l"; b.textContent = l; d.append(a, b); return d; };
+  let seeds = [], runs = [];
+  try {
+    const idx = await fetch("data/canary/index.json", { cache: "no-store" }).then((r) => r.ok ? r.json() : { runs: [] });
+    for (const id of idx.runs || []) {
+      const f = await fetch("data/canary/seeds/" + id + ".json", { cache: "no-store" }).then((r) => r.ok ? r.json() : null);
+      if (f) { runs.push(f); seeds.push(...f.seeds.filter((x) => x.endpointId !== "verity-selftest")); }
+    }
+  } catch (e) {}
+  if (runs.length === 0) { box.replaceChildren(stat("0", "bait sent so far")); note.textContent = "The first seeding run has not been published yet."; return; }
+  const delivered = seeds.filter((x) => x.delivered);
+  const hosts = new Set(delivered.map((x) => x.host + " " + x.model)).size;
+  const first = runs.map((r) => r.startedAt).sort()[0];
+  const days = Math.max(1, Math.ceil((Date.now() - Date.parse(first)) / 86400000));
+  let live = null;
+  try { live = await fetch(runs[runs.length - 1].listener.replace(/\/$/, "") + "/status", { cache: "no-store" }).then((r) => r.ok ? r.json() : null); } catch (e) {}
+  box.replaceChildren(
+    stat(String(delivered.length), "bait prompts delivered"),
+    stat(String(hosts), "host and model pairs baited"),
+    stat("day " + days, "of a 21-day listen"),
+    stat(live ? String(live.firedRoutes) : "?", live ? "hosts whose bait has fired" : "listener unreachable right now"),
+  );
+  const last = runs[runs.length - 1];
+  const proof = last.anchor ? "anchored on Solana" : last.publishedCommit ? "published in git commit " + last.publishedCommit.slice(0, 7) + " before sending" : "published before sending";
+  const self = live && live.selftest && live.selftest.fired > 0 ? " Our own test bait has fired, so the listener is known to work." : "";
+  note.textContent = "Latest run " + last.startedAt.slice(0, 16).replace("T", " ") + " UTC: commitments " + proof + (last.timestamp ? ", with a Bitcoin timestamp via OpenTimestamps" : "") + "." + self +
+    " If a host's bait fires, that host hears from us privately first, and this page shows only the count until the notice period ends.";
+  if (last.publishedCommit) {
+    const a = document.createElement("a"); a.href = "https://github.com/let-the-dreamers-rise/verity/commit/" + last.publishedCommit; a.textContent = " See the commitment.";
+    note.append(a);
   }
 })();
 </script>
