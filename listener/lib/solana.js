@@ -1,5 +1,5 @@
 // Plain-JS copy of src/solana.ts and src/chain.ts for the listener, which deploys on
-// its own. Posts a memo signed by the key in SOLANA_SECRET_KEY.
+// its own. Posts a memo signed by the listener's own key (see secrets.js).
 import { createPrivateKey, sign } from "node:crypto";
 
 const ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
@@ -26,15 +26,14 @@ function compactU16(n) {
   for (;;) { let b = n & 0x7f; n >>= 7; if (n === 0) { out.push(b); return out; } out.push(b | 0x80); }
 }
 
-export function signerFromEnv() {
-  const secret = JSON.parse(process.env.SOLANA_SECRET_KEY);
+export function signerFrom(secret) {
   const seed = Buffer.from(secret.slice(0, 32)).toString("base64url");
   const pub = Uint8Array.from(secret.slice(32));
   const key = createPrivateKey({ key: { kty: "OKP", crv: "Ed25519", d: seed, x: Buffer.from(pub).toString("base64url") }, format: "jwk" });
   return { publicKey: pub, key, address: b58encode(pub) };
 }
 
-export async function postMemo(memo) {
+export async function postMemo(memo, signer) {
   const rpcUrl = process.env.SOLANA_RPC || "https://api.mainnet-beta.solana.com";
   const cluster = rpcUrl.includes("devnet") ? "devnet" : rpcUrl.includes("testnet") ? "testnet" : "mainnet-beta";
   const rpc = async (method, params) => {
@@ -43,7 +42,6 @@ export async function postMemo(memo) {
     if (j.error) throw new Error(`${method}: ${j.error.message ?? JSON.stringify(j.error)}`);
     return j.result;
   };
-  const signer = signerFromEnv();
   const { blockhash } = (await rpc("getLatestBlockhash", [{ commitment: "confirmed" }])).value;
   const data = new TextEncoder().encode(memo);
   const message = Uint8Array.from([

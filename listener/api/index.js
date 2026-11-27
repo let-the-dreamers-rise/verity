@@ -8,7 +8,8 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { get, list, put } from "@vercel/blob";
 import { verifyGithubToken } from "../lib/oidc.js";
-import { postMemo, signerFromEnv } from "../lib/solana.js";
+import { postMemo, signerFrom } from "../lib/solana.js";
+import { secrets } from "../lib/secrets.js";
 
 const TOKEN = /[A-Za-z0-9_-]{22}/g;
 const KEY = /vrt_live_([A-Za-z0-9_-]{22})/g;
@@ -21,8 +22,8 @@ function tokensIn(text) {
   return [...out];
 }
 
-function isAdmin(got) {
-  const want = process.env.VERITY_ADMIN_TOKEN;
+async function isAdmin(got) {
+  const want = (await secrets()).adminToken;
   if (!want || !got || want.length !== got.length) return false;
   return timingSafeEqual(Buffer.from(want), Buffer.from(got));
 }
@@ -81,8 +82,8 @@ export default async function handler(req, res) {
   if (path === "/__verity/anchor") {
     // Signs a Solana memo for Verity's own workflow, proven by its GitHub OIDC token.
     if (req.method === "GET") {
-      try { return res.status(200).json({ signer: signerFromEnv().address, cluster: process.env.SOLANA_RPC?.includes("devnet") ? "devnet" : "mainnet-beta" }); }
-      catch { return res.status(503).json({ error: "no signing key configured" }); }
+      try { return res.status(200).json({ signer: signerFrom((await secrets()).solanaSecretKey).address, cluster: process.env.SOLANA_RPC?.includes("devnet") ? "devnet" : "mainnet-beta" }); }
+      catch (err) { return res.status(503).json({ error: err instanceof Error ? err.message : "no signing key" }); }
     }
     try {
       await verifyGithubToken(String(req.headers.authorization ?? "").replace(/^Bearer\s+/i, ""), {
@@ -93,11 +94,11 @@ export default async function handler(req, res) {
     }
     const memo = String(req.body?.memo ?? "");
     if (!/^verity [ -~]{10,400}$/.test(memo)) return res.status(400).json({ error: "memo must start with 'verity ' and be printable ASCII" });
-    try { return res.status(200).json(await postMemo(memo)); }
+    try { return res.status(200).json(await postMemo(memo, signerFrom((await secrets()).solanaSecretKey))); }
     catch (err) { return res.status(502).json({ error: err instanceof Error ? err.message : String(err) }); }
   }
   if (path.startsWith("/__verity/hits/")) {
-    if (!isAdmin(path.slice("/__verity/hits/".length))) return res.status(404).send("Not found");
+    if (!(await isAdmin(path.slice("/__verity/hits/".length)))) return res.status(404).send("Not found");
     const [seeds, hits] = await Promise.all([publicSeeds(), allHits()]);
     return res.status(200).json({ seeds: seeds.length, hitsStored: hits.length, fired: match(seeds, hits), hits });
   }
