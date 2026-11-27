@@ -10,18 +10,25 @@
    "urlCommitment": "91952b839fb759a42dc1fdb222114eb5d06cd442138dc55e171ebef019ffe77e",
    "keyCommitment": "bd40e9036a4dd1f64eddbb6ced458f46c31256f9000a576c45602f452b5ef332",
    "template": 1,
-   "committedAt": "2026-11-27T15:50:06.218Z"
+   "committedAt": "2026-11-27T15:50:06.218Z",
+   "sentAt": "2026-11-27T15:50:09.484Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "4ed0109eb252bca5997c75fa695268d4739288b388beeff91eb3bf0152f53280",
    "keyCommitment": "be4b9e6ce4ce011d6c955b832fd99dbd5b2254b81577699105bbf9d55115c968",
    "template": 5,
-   "committedAt": "2026-11-27T15:50:06.218Z"
+   "committedAt": "2026-11-27T15:50:06.218Z",
+   "sentAt": "2026-11-27T15:50:09.957Z",
+   "status": 200,
+   "delivered": true
   }
  ],
  "timestamp": {
   "kind": "opentimestamps",
   "calendar": "https://a.pool.opentimestamps.org",
   "proof": "8Ah1fPyG1hJ1jQjwIJM7oMAMTYnf6OYFx17UReiepbinjXCvJ3i+YG9touzwCPAg0Wl+QJuZZ/5+/XrBFDqE7LGT9noIut8YuInWoHRlqokI8BDeh95jO653DqgYwt3bLT4HCPAgC51caRfP2PyC/fbG5bc8zS9EO5Y9/G6nQJig8Ndd558I8CBiNVw0xht3+sDoVtfGT3KlFxuXkZoR1SiA7x0p9eALxAjwIOxvkaepQajxNTwvoJYaU25tt5xogkPT1iUuKFe8zz5ACPEEawmmr/AIlQzsWWt+y5kAg9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZw=="
- }
+ },
+ "publishedCommit": "87c15e27ab6d33c8a5e84501c5cdfc5e05a72c93"
 }
