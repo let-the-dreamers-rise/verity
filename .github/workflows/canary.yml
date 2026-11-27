@@ -49,3 +49,10 @@ jobs:
             git commit -m "Canary seeds $(date -u +%F)"
             git pull --rebase && git push
           fi
+  board:
+    needs: seed
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/board.yml
