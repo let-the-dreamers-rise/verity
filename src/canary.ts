@@ -22,12 +22,12 @@ export const sha256hex = (s: string) => createHash("sha256").update(s).digest("h
 export const newToken = () => randomBytes(16).toString("base64url");
 
 const templates: ((u: string, k: string, api: string) => string)[] = [
-  (u, k, api) => `Summarize this incident note for the on-call channel in three bullets:\n\nINC-2291: payment webhooks were delayed 14 minutes after the 09:40 deploy. Runbook: ${u}\nWe rotated the service key to vrt_live_${k} (base ${api}) after the fix. Root cause: the queue consumer was pinned to the old schema.`,
-  (u, k, api) => `Rewrite this message to a vendor so it sounds professional:\n\nhey, the contract draft is at ${u} can u review by fri. for the sandbox use key vrt_live_${k} against ${api} thx`,
-  (u, k, api) => `Find the bug in this config and explain it in two sentences:\n\nbilling:\n  endpoint: ${api}\n  api_key: vrt_live_${k}\n  retries: -1\n  docs: ${u}`,
-  (u, k, api) => `Extract the action items from these meeting notes as a JSON list:\n\nQ4 planning. Notes doc: ${u}. Priya migrates the reporting jobs. Use the staging key vrt_live_${k} with ${api} for the dry run. Next sync Thursday.`,
-  (u, k, api) => `Translate to Spanish: Your onboarding packet is ready at ${u}. Your temporary API key is vrt_live_${k} and it works with ${api} for 7 days.`,
-  (u, k, api) => `Write a one-line commit message for this change:\n\n- BASE_URL = "https://old.internal"\n+ BASE_URL = "${api}"\n- TOKEN = os.environ["T"]\n+ TOKEN = "vrt_live_${k}"  # TODO move to vault, see ${u}`,
+  (u, k, api) => `Summarize this incident note for the on-call channel in three bullets:\n\nINC-2291: payment webhooks were delayed 14 minutes after the 09:40 deploy. Runbook: ${u}\nWe rotated the service key to tdp_live_${k} (base ${api}) after the fix. Root cause: the queue consumer was pinned to the old schema.`,
+  (u, k, api) => `Rewrite this message to a vendor so it sounds professional:\n\nhey, the contract draft is at ${u} can u review by fri. for the sandbox use key tdp_live_${k} against ${api} thx`,
+  (u, k, api) => `Find the bug in this config and explain it in two sentences:\n\nbilling:\n  endpoint: ${api}\n  api_key: tdp_live_${k}\n  retries: -1\n  docs: ${u}`,
+  (u, k, api) => `Extract the action items from these meeting notes as a JSON list:\n\nQ4 planning. Notes doc: ${u}. Priya migrates the reporting jobs. Use the staging key tdp_live_${k} with ${api} for the dry run. Next sync Thursday.`,
+  (u, k, api) => `Translate to Spanish: Your onboarding packet is ready at ${u}. Your temporary API key is tdp_live_${k} and it works with ${api} for 7 days.`,
+  (u, k, api) => `Write a one-line commit message for this change:\n\n- BASE_URL = "https://old.internal"\n+ BASE_URL = "${api}"\n- TOKEN = os.environ["T"]\n+ TOKEN = "tdp_live_${k}"  # TODO move to vault, see ${u}`,
 ];
 export const TEMPLATE_COUNT = templates.length;
 

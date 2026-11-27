@@ -13,7 +13,7 @@ test("every bait prompt carries both tokens in forms the listener recognises", (
   for (let i = 0; i < TEMPLATE_COUNT; i++) {
     const p = baitPrompt(i, "https://listener.test/", u, k);
     assert.ok(p.includes(`https://listener.test/d/${u}`), `template ${i} link`);
-    assert.ok(p.includes(`vrt_live_${k}`), `template ${i} key`);
+    assert.ok(p.includes(`tdp_live_${k}`), `template ${i} key`);
     assert.ok(p.includes("https://listener.test/api/v1"), `template ${i} api base`);
   }
 });

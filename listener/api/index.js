@@ -12,7 +12,7 @@ import { postMemo, signerFrom } from "../lib/solana.js";
 import { secrets } from "../lib/secrets.js";
 
 const TOKEN = /[A-Za-z0-9_-]{22}/g;
-const KEY = /vrt_live_([A-Za-z0-9_-]{22})/g;
+const KEY = /(?:tdp|vrt)_live_([A-Za-z0-9_-]{22})/g;
 const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 
 function tokensIn(text) {
@@ -102,6 +102,26 @@ export default async function handler(req, res) {
     const [seeds, hits] = await Promise.all([publicSeeds(), allHits()]);
     return res.status(200).json({ seeds: seeds.length, hitsStored: hits.length, fired: match(seeds, hits), hits });
   }
+  if (path === "/check") {
+    // For Verity Monitor users: which of these bait hashes have come back? Hashes are
+    // the user's own commitments, so the details of their own bait are theirs to see.
+    res.setHeader("access-control-allow-origin", "*");
+    res.setHeader("cache-control", "no-store");
+    if (req.method !== "POST") return res.status(405).json({ error: "POST {\"hashes\": [...]}" });
+    const wanted = new Set((Array.isArray(req.body?.hashes) ? req.body.hashes : []).filter((h) => /^[0-9a-f]{64}$/.test(h)).slice(0, 2000));
+    if (wanted.size === 0) return res.status(400).json({ error: "hashes must be a list of sha256 hex strings" });
+    const agg = new Map();
+    for (const hit of await allHits()) for (const t of hit.tokens) {
+      if (!wanted.has(t.hash)) continue;
+      const a = agg.get(t.hash) ?? { hash: t.hash, firstAt: hit.at, lastAt: hit.at, count: 0, via: new Set(), countries: new Set(), userAgents: new Set() };
+      a.count++; a.lastAt = hit.at; a.via.add(t.via);
+      if (hit.country) a.countries.add(hit.country);
+      if (hit.userAgent) a.userAgents.add(String(hit.userAgent).slice(0, 200));
+      agg.set(t.hash, a);
+    }
+    const fired = [...agg.values()].map((a) => ({ ...a, via: [...a.via], countries: [...a.countries], userAgents: [...a.userAgents].slice(0, 5) }));
+    return res.status(200).json({ checkedAt: new Date().toISOString(), checked: wanted.size, fired });
+  }
   if (path === "/status") {
     // Public: counts only. Which route fired stays private until the host has been told.
     const [seeds, hits] = await Promise.all([publicSeeds(), allHits()]);
@@ -112,8 +132,8 @@ export default async function handler(req, res) {
     return res.status(200).json({
       service: "verity-listener",
       checkedAt: new Date().toISOString(),
-      seeded: seeds.filter((s) => !isSelf(s)).length,
-      routes: new Set(seeds.filter((s) => !isSelf(s)).map((s) => s.endpointId)).size,
+      seeded: seeds.filter((s) => !isSelf(s) && s.delivered).length,
+      routes: new Set(seeds.filter((s) => !isSelf(s) && s.delivered).map((s) => s.endpointId)).size,
       fired: fired.filter((f) => !isSelf(f.seed)).length,
       firedRoutes: new Set(fired.filter((f) => !isSelf(f.seed)).map((f) => f.seed.endpointId)).size,
       selftest: { seeded: seeds.filter(isSelf).length, fired: fired.filter((f) => isSelf(f.seed)).length },

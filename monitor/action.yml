@@ -1,0 +1,43 @@
+name: Verity Monitor
+description: Continuously checks whether prompts sent to your inference endpoint leak. Sends one-time bait through your endpoint, commits the bait hashes first, and fails the job if any bait ever comes back.
+branding:
+  icon: shield
+  color: blue
+inputs:
+  base-url:
+    description: OpenAI-compatible base URL of the endpoint to monitor, ending in /v1
+    required: true
+  model:
+    description: Model name the endpoint expects
+    required: true
+  api-key:
+    description: API key for the endpoint. Pass it from a secret.
+    required: true
+  count:
+    description: New bait prompts per run (1 to 20)
+    required: false
+    default: "2"
+  directory:
+    description: Folder in your repository where bait commitments are kept
+    required: false
+    default: ".verity"
+  listener:
+    description: Listener that receives returning bait
+    required: false
+    default: "https://teamdocs-portal.vercel.app"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v5
+      with:
+        node-version: 22
+    - shell: bash
+      env:
+        VERITY_API_KEY: ${{ inputs.api-key }}
+      run: >
+        node "$GITHUB_ACTION_PATH/../src/monitor.ts"
+        --base-url "${{ inputs.base-url }}"
+        --model "${{ inputs.model }}"
+        --count "${{ inputs.count }}"
+        --dir "${{ inputs.directory }}"
+        --listener "${{ inputs.listener }}"

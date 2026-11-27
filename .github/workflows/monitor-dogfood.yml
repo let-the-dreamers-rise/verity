@@ -1,0 +1,22 @@
+name: Monitor (dogfood)
+# Verity Monitor run on ourselves, exactly as a customer would install it.
+on:
+  schedule:
+    - cron: "23 7 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: monitor-dogfood
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./monitor
+        with:
+          base-url: https://router.huggingface.co/v1
+          model: openai/gpt-oss-120b:groq
+          api-key: ${{ secrets.HF_TOKEN }}
+          count: "2"
+          directory: monitor-dogfood
