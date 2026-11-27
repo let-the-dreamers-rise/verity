@@ -1,0 +1,688 @@
+{
+ "runId": "2026-11-27T13-42-52-078Z",
+ "startedAt": "2026-11-27T13:42:52.078Z",
+ "listener": "https://teamdocs-portal.vercel.app",
+ "root": "d5aad5ddceb81b0f6420665f12d49978d084e8edd78fee3213431ad85fd75859",
+ "memo": "verity canary v1 2026-11-27T13-42-52-078Z root=d5aad5ddceb81b0f6420665f12d49978d084e8edd78fee3213431ad85fd75859 n=67",
+ "anchor": null,
+ "anchorError": "listener refused to anchor: sendTransaction: Transaction simulation failed",
+ "timestamp": {
+  "kind": "opentimestamps",
+  "calendar": "https://a.pool.opentimestamps.org",
+  "proof": "8AiA4nbNEgtD5wjwIBCv4ZRY3o/9lT+maqOOsejbe3zZivIlCOXxcKMOt23KCPAQOOUmjjaCpujQ7RYxFW2M7gjwILKsSpfhw4aqkOEOUBUj7jP00CgVpRNicDZ6pkYTg9FyCPAgP5081t9DGzpun0xFhS/72KfA9rkSCv8hRH443+4vHF4I8SBHc64iOKLIh5tod8gLxEe0EnzOncvYXX7NusDkeyERpwjxBGsJiN7wCFwIfPR53jZvAIPf4w0u+QyOLi1odHRwczovL2FsaWNlLmJ0Yy5jYWxlbmRhci5vcGVudGltZXN0YW1wcy5vcmc=",
+  "submittedAt": "2026-11-27T13:42:54.753Z"
+ },
+ "publishedCommit": null,
+ "seeds": [
+  {
+   "urlCommitment": "5ea22a565252c3a2d549a2cb88c5b898d118bf91147b588b56bc98b4a3a6fd57",
+   "keyCommitment": "f817be9aa62c8d0f12b03c76539909e73670456f2b3ff84b5dd27684d9f82f89",
+   "endpointId": "hf/akashml/llama-3.3-70b",
+   "host": "AkashML",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "b44f0673b56eb19ada2b82169a159a0092519ead9138755caf61dba063ca2e07",
+   "keyCommitment": "89be595ca20f0703a172804b503348a4202c3034ee4a4e4afb122e3c2f85dc8a",
+   "endpointId": "hf/akashml/llama-3.3-70b",
+   "host": "AkashML",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "2e28ab4ed37ccd2423938b7175271707119ee518ff882e62ac4b1d576ae6e4fd",
+   "keyCommitment": "754f23cacbe9726b798f16f3fc46226a7150f736b4480c0274b472c7b25205d2",
+   "endpointId": "hf/akashml/llama-3.3-70b",
+   "host": "AkashML",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "8af8231383ec734803ed16e3f2ec4b995422054a57fa17a3ccf51eda8a853b8f",
+   "keyCommitment": "31e088d779283cf521b81404dbe4e8e11ab90d98ea1205a31fb3a49744e4d167",
+   "endpointId": "hf/amazon-bedrock/llama-3.3-70b",
+   "host": "Amazon Bedrock",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "2db424c3a1beae59b69263a04207332a5534d20bf206ec860f959b5a6bc7f37b",
+   "keyCommitment": "52c31a4431865957592ad1598add6a613d77be4adeb1e9eb6d71477f1bdd0909",
+   "endpointId": "hf/amazon-bedrock/llama-3.3-70b",
+   "host": "Amazon Bedrock",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "146847df1215081c6d5c5f5dfa65371f3accca4744fa29e51effa73aca3edc58",
+   "keyCommitment": "d456fae26cd9037577f4f6d07a73fa83a90eda90a1a7dcbd2a3c045823ed1683",
+   "endpointId": "hf/amazon-bedrock/llama-3.3-70b",
+   "host": "Amazon Bedrock",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "e8c81d56aeb6ad358d678eca6e2ec0b35d0ea5952cad127a3c1549db64a6bda2",
+   "keyCommitment": "17640e6b1b49c553deef59402d2df0d06652a58f975505bce094fd061ea29907",
+   "endpointId": "hf/cloudflare/llama-3.3-70b",
+   "host": "Cloudflare",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "965d7b94c8ba2a2a0571a0843cc40e490c56c70c348975101fb064d55cdcccdc",
+   "keyCommitment": "a9788f29c62f019e03cdf1c6c4c53838142f07eda450655a5805c991da33e073",
+   "endpointId": "hf/cloudflare/llama-3.3-70b",
+   "host": "Cloudflare",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "f63baa9518218941352ddd88d64749c2fa25ddcb5194254efdbf5c6e5e198121",
+   "keyCommitment": "d81e6647903dff3650c3ce8f4f0dde9cbc807fd868fa9331cc85348e846e53cd",
+   "endpointId": "hf/cloudflare/llama-3.3-70b",
+   "host": "Cloudflare",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "989ac8843b61466406b8c353f5ad04f58c2ba47059353606ad68addd4b4359de",
+   "keyCommitment": "dbdd82677086399e8a40eec6fef962fc00a69a2685511b4e06524f5a112280ac",
+   "endpointId": "hf/coreweave/llama-3.3-70b",
+   "host": "CoreWeave",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "8669ade9a960634585d768a86dea2e4309426edded3589d7a845fb2252def72e",
+   "keyCommitment": "7944da8bdc1055a3cb3b4a27a1a01da935f17734291de66a9e60057769450c0c",
+   "endpointId": "hf/coreweave/llama-3.3-70b",
+   "host": "CoreWeave",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "27c15b018e69cac2c823c09e78635fd2fc0937367c08c273f737f928bd6c6108",
+   "keyCommitment": "ca2fd12a3780a91c7ec9b96dccecfe5cfeeb4fc2250e011b5f9147c188ad413b",
+   "endpointId": "hf/coreweave/llama-3.3-70b",
+   "host": "CoreWeave",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "c8cf1ce775fe9da178696615782fcd5bb1da46cf568288e38c1ab92eb98f3643",
+   "keyCommitment": "cd2114a70447ff07f040233f2bfe61e7ff2e7f1d51eda3070dff22304ac958f6",
+   "endpointId": "hf/deepinfra/llama-3.3-70b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "0357f71f63dc635b6ed5334af1ba9c27ec951ae7175ec95f28c96b44281080ac",
+   "keyCommitment": "42a64910fe684a1065adf6079e44b21a5359744accc9cfa379a8a479cf2a13ea",
+   "endpointId": "hf/deepinfra/llama-3.3-70b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "a25bffc5701d8eef330b605371ff4730a388178ea8dd4b7b01c9d8a6f5fc2a16",
+   "keyCommitment": "334ec65380fb33f920b10e2c72128fe66b6c2d85144e2418fe301cded14649c1",
+   "endpointId": "hf/deepinfra/llama-3.3-70b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "8ee3ea21ee5f3989cb6e75aacad5e267187206b7956f11fb572a04de4ac89c7a",
+   "keyCommitment": "c4959b99ebf047d8f24ae73543a89269eb31b5c770228dd68177a234c2a4079e",
+   "endpointId": "hf/groq/llama-3.3-70b",
+   "host": "Groq",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "c96b43a72de297a499ca4ca6c15fbbade78f08a2c5e0da22c686ab809e1ed520",
+   "keyCommitment": "3f217dc8ae1a430eceebedf45ff43e4fbd94956c945a4aa32064bb38c2207639",
+   "endpointId": "hf/groq/llama-3.3-70b",
+   "host": "Groq",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "e6c16ed43d57dc9309e44e6c5fe0380b10af879d1450552ca28c8763ae8335bc",
+   "keyCommitment": "2664d647c50feca254cd1b83be95e0763e0bf52401249e8f172377b21b20210a",
+   "endpointId": "hf/groq/llama-3.3-70b",
+   "host": "Groq",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "7c703f16af2aaa33acabb38e986acd17d510246d8e65d13750680733e14cee09",
+   "keyCommitment": "545710938d097481f5ab009426daca384de7262fd667ec58be50900c3feaad73",
+   "endpointId": "hf/parasail/llama-3.3-70b",
+   "host": "Parasail",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "cd78da1c509ef322b3ff939bc4db369d426e0a03ffd11ff5f4a9b636b44ee2c4",
+   "keyCommitment": "1b302ee0be53b58c2fa5c8eb481fa0697ee2ab10203e64e68ff596f9b8ca5522",
+   "endpointId": "hf/parasail/llama-3.3-70b",
+   "host": "Parasail",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "785a77a0f0fc05f505759181445362ca74eca51002ff19dec064406feac5031b",
+   "keyCommitment": "868a2d5b23ea3c6e820c12a98157cab6803a131ef7696130b4719bb61be1bc42",
+   "endpointId": "hf/parasail/llama-3.3-70b",
+   "host": "Parasail",
+   "via": "Hugging Face router",
+   "model": "llama-3.3-70b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "77e3267fe4ec0d6d6d17360aea18ee69b64c1c451d3e791e2a14a153eefca925",
+   "keyCommitment": "f4e47552c78bf5f0b62e0eb291014c9d51a2b9d9d7388366fb2641d05bc6de6b",
+   "endpointId": "hf/coreweave/gemma-4-31b",
+   "host": "CoreWeave",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "9dac98f979fe0a63a35e30a1c9d24feffec6c653804f433f9943626249d3419e",
+   "keyCommitment": "3ae63ebb60bf22887f002a3ea17601050d8bef9c09a2544024adaa4c1438696a",
+   "endpointId": "hf/coreweave/gemma-4-31b",
+   "host": "CoreWeave",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "4418f5363991bbd34c20bfce6660e65e910feb40516e444fb92c3c168c70d7a3",
+   "keyCommitment": "f71a64350de58973910dbc68fda7f35c3849b00b8f25d1611c225ab651cc6245",
+   "endpointId": "hf/coreweave/gemma-4-31b",
+   "host": "CoreWeave",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "b51a22b4cfb9640ba4ae1d09c9fd423e0a2266ac57200dcce0fa9700e5d2112b",
+   "keyCommitment": "85cd40de12f857234ba99c75bc967cecdc5a5522ef46b5a2e0ae5ba53221925b",
+   "endpointId": "hf/crusoe/gemma-4-31b",
+   "host": "Crusoe",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "bc929b62cb7950222b40d303fcd687556c331033441dd398ef97d01e723b3cc2",
+   "keyCommitment": "3a23bb78068bf6e4e84612f26de71a686ab0bf475ab14bff785998c712714339",
+   "endpointId": "hf/crusoe/gemma-4-31b",
+   "host": "Crusoe",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "aae0e78bb6bc3b00431665e2b874b1954a66497badb1c6595509064665e958db",
+   "keyCommitment": "13206704b23ac67dd98420cc407a6ae57d3152afd571619067e036c934f88cf4",
+   "endpointId": "hf/crusoe/gemma-4-31b",
+   "host": "Crusoe",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "a64d693a42b78ea94a0f3916e5efdf8037b489051acc12738f1144bbdf68f770",
+   "keyCommitment": "8c6d891ac7dba12fe46b77421564a5ee5cbc192cbd3dfe8eed17233f7dd0cbc2",
+   "endpointId": "hf/deepinfra/gemma-4-31b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "ce3b860d5eaf74efd9aab71bb8e54749ba681865fb6770a233ea17d5319f0732",
+   "keyCommitment": "22fac0e22714b7f54d24690137dcfaf6204d30cb4f0605ca34ee01c41900b6e0",
+   "endpointId": "hf/deepinfra/gemma-4-31b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "f427c951441f6507545e08b0b5350c73c045b2d4c9459957e0a0100b762e52d0",
+   "keyCommitment": "54019ac3885eb40ed58b108a253ab7ade2365e0daa1f539f51d932e778a1b486",
+   "endpointId": "hf/deepinfra/gemma-4-31b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "e04b00ed0da4f3ceef82d1134acb730ef843fa10cd324685fdf5c20a8c458545",
+   "keyCommitment": "06e7f4ceb048768dbacbc73fa1544e466757595ab91af59920c5f16477d9d70e",
+   "endpointId": "hf/modal/gemma-4-31b",
+   "host": "Modal",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "05d4458a36f82e88b3b864ad4c4bae1e223c751dd482ef7ab4f86561cd3c7827",
+   "keyCommitment": "bfeb331649e298fe39abb1ef9f2f3ffa4fb96f2d62a9f8924f37da8fcdbb66d4",
+   "endpointId": "hf/modal/gemma-4-31b",
+   "host": "Modal",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "c2f27678de2c3ef0fa3f4451c3a9bec943aefaa9a4ae3efc740f2286488db5eb",
+   "keyCommitment": "f9bbf9b7f01826f0f9978a2fd76d6debbf0629091acb503dad2ce3099a5bdbff",
+   "endpointId": "hf/modal/gemma-4-31b",
+   "host": "Modal",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "28d0b2e718d0464c2ad3eeef79de1445abd8ed1e3b800f9dc4c71f738dce3d65",
+   "keyCommitment": "b792c45ce5fb14629b8b072fdfccfb0833df170015939347b793fd9d860dad8e",
+   "endpointId": "hf/parasail/gemma-4-31b",
+   "host": "Parasail",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "f2ead3c9da43c9ddb73ce1a77a6f6c2b7a46ce735d421116d30908ac86b816ac",
+   "keyCommitment": "4d90ae91fd5b6b08443c1f97956654a93fb3b5b1e752438ae1138a5b3190a347",
+   "endpointId": "hf/parasail/gemma-4-31b",
+   "host": "Parasail",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "81347577c72287c06342dfa28e0524bc5c1e2f30a213323fc0f04ed17103269c",
+   "keyCommitment": "89549798be7fedc78e9fd6038847931cf55c48d311ded32d8f8016feae95073f",
+   "endpointId": "hf/parasail/gemma-4-31b",
+   "host": "Parasail",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "9ea1bc69a296b464269c0d4c23e61a9a266736dbee63eb43ebe342c1e69b4107",
+   "keyCommitment": "9722fc6021f77c27143ab63169c707d5a07228e57d8cde7fdc4cf91c76aba88b",
+   "endpointId": "hf/venice/gemma-4-31b",
+   "host": "Venice",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "6f9b78ee7b9a1cc945d0f9acb01827e6d00f85ad1a1ab6bb4b45803d2c235441",
+   "keyCommitment": "851ce6ff790f4c96b2f4b1d11e212766adb11957a836a314d5b7a347f7de42f9",
+   "endpointId": "hf/venice/gemma-4-31b",
+   "host": "Venice",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "5d212cee44c1ae1ebfc0a50b631da325afb415aff3b2fbece59a5d9736473368",
+   "keyCommitment": "03f9b43314ef3705a34e60ba64754688587128d07fd13dad4361deb62d4c9afc",
+   "endpointId": "hf/venice/gemma-4-31b",
+   "host": "Venice",
+   "via": "Hugging Face router",
+   "model": "gemma-4-31b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "1f3fb26c3bcf09646fd609279c14de2530dc8008c07fbf19b550c6e5e2986a88",
+   "keyCommitment": "ca4f52920540c76c4a58b6e19931bdf329e12222bc246eecc29a1f74566250ee",
+   "endpointId": "openrouter/free/gemma-4-31b",
+   "host": "OpenRouter free tier",
+   "via": "OpenRouter",
+   "model": "gemma-4-31b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "cf57fa590a4e7e90554fa6778356134e9551baea7af13116b4e6a388d98a5357",
+   "keyCommitment": "3463b7d9a0d0ec2da214aefb31fa94ebea153216924262ac1babbaa49a36a8c2",
+   "endpointId": "openrouter/free/gemma-4-31b",
+   "host": "OpenRouter free tier",
+   "via": "OpenRouter",
+   "model": "gemma-4-31b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "cdbf3ea2c010067495575cff20d60ce8a3569e9594273e396b0a1af1ff7c2027",
+   "keyCommitment": "f4018ed94e229ff79fe94123476c83c266d562d19ef353426b279959020163f2",
+   "endpointId": "openrouter/free/gemma-4-31b",
+   "host": "OpenRouter free tier",
+   "via": "OpenRouter",
+   "model": "gemma-4-31b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "ee5f5ae79a1e6c79e4d6e0dcb080774bac6373a6ed5f2317d247b9a822619fbe",
+   "keyCommitment": "1c31307cc917c8e1af18d830b80f46518cdd455211460b3b189f7745ab49bba9",
+   "endpointId": "hf/groq/gpt-oss-120b",
+   "host": "Groq",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "6deaa9f146bd3d251cd7378ef734cfbc0ab605b67aa60bb178a56c3da7787b9f",
+   "keyCommitment": "c14fe5a8090de29f71db602ce0085872eeb645f820f319dd01a6be63e61884bc",
+   "endpointId": "hf/groq/gpt-oss-120b",
+   "host": "Groq",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "17890dfaff30a6e65c617560a23efb0f35c0f399ffebb630d607bdd130d38ef8",
+   "keyCommitment": "29d91ae3e67b3a299908fc1d5a8a5fb0120d1e3a857621eed2881f420885eafb",
+   "endpointId": "hf/groq/gpt-oss-120b",
+   "host": "Groq",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "3459c95090a9cb90e8684f7a0a4bf95da68e235ec652ec07f93724bbbea73f3a",
+   "keyCommitment": "be009b211fa1748c502cc39fee188d8b85c6c817e24108512862650f3e859e66",
+   "endpointId": "hf/cerebras/gpt-oss-120b",
+   "host": "Cerebras",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "5ebb91529ea20c135a91b39dc9f1909dd51a6485a727bcaee16219f870e81678",
+   "keyCommitment": "43cc22c09922cceadab9c468ba3f117441fa13f05696d58070c45aceeca539cf",
+   "endpointId": "hf/cerebras/gpt-oss-120b",
+   "host": "Cerebras",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "0d4624680f8dc7412e783c8dd7507a5a2231477f11dd8c48e63b45ed07bd5af9",
+   "keyCommitment": "7b254dabb9238fbc8b0b5f01f9651b6fe583ee716521f51d6467116a9f6689bf",
+   "endpointId": "hf/cerebras/gpt-oss-120b",
+   "host": "Cerebras",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "1dd39565765bfc836a8ef95e65ad020d8418f254febe9bd90e18f177312a9dd2",
+   "keyCommitment": "a572c0dc818b4a950d752ceb9f166aef5cda3b607546000ad1479408d1b4ad7c",
+   "endpointId": "hf/together/gpt-oss-120b",
+   "host": "Together AI",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "d484e2a6062cb774f3c483f791ba942c1bfb4f7d1485727e7a6ecf39c3f79fa2",
+   "keyCommitment": "8e3020f07167096a71742d7962a1ef00e33a5db4f4cb47c170fd225f50dce22f",
+   "endpointId": "hf/together/gpt-oss-120b",
+   "host": "Together AI",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "b78885e1befa1a0c5196708e2f39dbbbc71c05fab8fa07a72a2701bf04a408a9",
+   "keyCommitment": "7482382576780bd87c92dd230f3d05d258fbd5f1789d17307ee2cb84d8a2b8ff",
+   "endpointId": "hf/together/gpt-oss-120b",
+   "host": "Together AI",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "e98cb37d8c13223a8caea912598e09820c2315042a9fa068b3d10ff2673b46cf",
+   "keyCommitment": "5ebb384ff6cd31ccde20eac945cc818b771f372e7975bb27c8b0d5fde2706f8e",
+   "endpointId": "hf/fireworks-ai/gpt-oss-120b",
+   "host": "Fireworks AI",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "8e139c9ff2018bfe51a5d1eec4f35149ddc4ec40daf1b1d369ba5e383df619b7",
+   "keyCommitment": "bb867e01cf05e93831754a4fef4508df554b2b7e2aa4a4712f4052b1fa557be9",
+   "endpointId": "hf/fireworks-ai/gpt-oss-120b",
+   "host": "Fireworks AI",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "d3d87e5185b37cdd62accb30ff8c9a351135e088418cbfffdbc2e5b3274eed0d",
+   "keyCommitment": "ad1a7fc5766dca845aec60dc45fc8e2c79024a2d49aff1d7b89358772cd8cb4e",
+   "endpointId": "hf/fireworks-ai/gpt-oss-120b",
+   "host": "Fireworks AI",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "c6a03b5427afabd63e66d1b2d3b89fed33cb85a7595229abefed6dec812cc971",
+   "keyCommitment": "12cf054e1a092155f76ed7642d1b3841babe18afdcf3258b4faa6f24ff6fe48c",
+   "endpointId": "hf/deepinfra/gpt-oss-120b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "46b4b8feae31605423d672b921d23dfeb1e3f91bc52af13c6619a54c92eb10b2",
+   "keyCommitment": "6680de52fd54b38daff7af869ee6b7f12cabd9f302dd21147cc1eea415e5eb40",
+   "endpointId": "hf/deepinfra/gpt-oss-120b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "53efe5c4307e3daa1aca0eee864c1aeebd03544ba728de7c372179e8c782befd",
+   "keyCommitment": "75c8cb25276a7cb23fb319958887208a35a318a002475fb1bea083496eac5f9a",
+   "endpointId": "hf/deepinfra/gpt-oss-120b",
+   "host": "DeepInfra",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "58b1c98ce95174c798fcb9aaabe7a839547b643fcfaa4eeb97a69c0c401db4b4",
+   "keyCommitment": "4d492091f98ab8a8f3bd451696f6ad983236ada25ecbea40ea5036dc6e3cd285",
+   "endpointId": "hf/nebius/gpt-oss-120b",
+   "host": "Nebius",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "c0bad094ad12a12dd547d956abaf3b8bb8ea8ffca107736aa354d77b766767c0",
+   "keyCommitment": "a266e7fd880ab53dc911e6fb9124a6f9a558443387b7a7714bf2a7e5b7e58b99",
+   "endpointId": "hf/nebius/gpt-oss-120b",
+   "host": "Nebius",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "27d63932a926bd2ab4db561d7b4dd776058e0ff3016e78844928b7620bdf84dc",
+   "keyCommitment": "2dbf8338fc04a8bedf9362db39c714bed5ad49535e8660d38afd20a7fe4e55ec",
+   "endpointId": "hf/nebius/gpt-oss-120b",
+   "host": "Nebius",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "1463516241c815be8a26dfd75be634ae1e3680f726c021212d138ca62856a181",
+   "keyCommitment": "f7fc3cd804ec030f53626b18c390cd4c97d67a65ee583336bb9d72c1761b5705",
+   "endpointId": "hf/sambanova/gpt-oss-120b",
+   "host": "SambaNova",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "ed2b6f447a315b97d57ac1485b198fb7bbea5fefbedcd861c3f4a6fa8e71d860",
+   "keyCommitment": "e40c536461016d20f31a24577825f19ce0761ad5bb8fe29b667cbbb138bd5d9e",
+   "endpointId": "hf/sambanova/gpt-oss-120b",
+   "host": "SambaNova",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 2,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "d03d78fb8fc338741c300221b844437e9d5cbf68fc6172f851723931d17eec5b",
+   "keyCommitment": "6c521f704304bb324de05b146fc3472ab081f325750a11f57003fab146f86385",
+   "endpointId": "hf/sambanova/gpt-oss-120b",
+   "host": "SambaNova",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 4,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "de375856982bb42ff0a2f756f32d1bf6ab47112e0c8a022c3c4dc734719fc18a",
+   "keyCommitment": "cb1194d347d15f90dee299562f410e4b1af90728cf7e7653a554f79f11852900",
+   "endpointId": "hf/baseten/gpt-oss-120b",
+   "host": "Baseten",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 3,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "cf0546862fb2b5fc5fdc38ecee71adbf6adc05482e5f212bd7ba550da7d25d30",
+   "keyCommitment": "987f8ea3767c26c694c395dc74b31a58af3b9e46093d5c968d72d1418186eb2c",
+   "endpointId": "hf/baseten/gpt-oss-120b",
+   "host": "Baseten",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 5,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "055c1ea744c545aec7bf0f2ee52eeabd5e23d8d138f39d056631d57778783a32",
+   "keyCommitment": "9aad3c3e79bd83693fb83ca6f40360ee03607dca0b9d82b355616ae3a8c387c0",
+   "endpointId": "hf/baseten/gpt-oss-120b",
+   "host": "Baseten",
+   "via": "Hugging Face router",
+   "model": "gpt-oss-120b",
+   "template": 1,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  },
+  {
+   "urlCommitment": "9d6a39eb622c0c75d48c2b90281c8078add37bf55cb1bff371ed3f9772adf049",
+   "keyCommitment": "9ffb38687213e1d0eee7d3341f18a7ee977d5a78b21b5b3e6115c4ab8a1b0a21",
+   "endpointId": "verity-selftest",
+   "host": "Verity self-test",
+   "via": "direct",
+   "model": "none",
+   "template": 0,
+   "committedAt": "2026-11-27T13:42:52.078Z"
+  }
+ ]
+}
