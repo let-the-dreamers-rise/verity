@@ -39,6 +39,32 @@ What a hit does and does not prove: it proves the exact text sent only to that h
 
 Run it: `node src/seed.ts --selftest --per-endpoint 3` (or the Canary workflow). The `--selftest` seed is fetched by Verity itself, so the board can show the listener is working.
 
+## Verity Monitor: watch your own endpoint
+
+If you send sensitive prompts to an inference provider, add this to any repository and Verity will keep checking, every day, whether prompts sent through your account ever leak.
+
+```yaml
+# .github/workflows/verity-monitor.yml
+name: Verity Monitor
+on:
+  schedule: [{ cron: "0 6 * * *" }]
+  workflow_dispatch:
+permissions:
+  contents: write   # bait hashes are committed to your repo before sending
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: let-the-dreamers-rise/verity/monitor@main
+        with:
+          base-url: https://api.your-provider.com/v1
+          model: your-model-name
+          api-key: ${{ secrets.PROVIDER_API_KEY }}
+```
+
+Each run first asks the listener whether any bait from earlier runs has come back, and fails the job if it has, so GitHub emails you. Then it writes the SHA-256 of fresh bait to `.verity/seeds/` and pushes that commit before sending the bait through your endpoint with your key. Your key never leaves the runner, and the bait tokens are never written down. Cost: two short completions a day on your own account.
+
 ## Run it
 
 Needs Node 22.18 or newer. There are no dependencies to install.
