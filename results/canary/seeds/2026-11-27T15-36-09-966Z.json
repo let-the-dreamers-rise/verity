@@ -12,7 +12,7 @@
   "proof": "8AhQ/0RYm351qwjwIEvg9mcnwKHJwlGiNKiFTrDpfsSMeKNrgnv//+odcOXyCPAQHmpBDa3nR/OgKUimTpz79AjxIMfAiNl9p/GMLs3F0XrBnKDSy09gxYXP338ozAlhV5wKCPEgNJ4sN4SmbTlEXb7NGgvmuMT38Ap/LZQC3zdI31CR3JsI8CDC+umThPWbzhC7kpq5Y+OfpGZDoIQkMB+j1wSOzmnrrwjwIKNKaHSnq4rHgZX7KYjdIlcRPGsoWq8lXbRE1BJgQnw+CPEEawmjbPAIrIDXUDG7NH4Ag9/jDS75DI4uLWh0dHBzOi8vYWxpY2UuYnRjLmNhbGVuZGFyLm9wZW50aW1lc3RhbXBzLm9yZw==",
   "submittedAt": "2026-11-27T15:36:12.855Z"
  },
- "publishedCommit": null,
+ "publishedCommit": "486b4d1f2c620ac459bc34a1f26cf371f52a119a",
  "seeds": [
   {
    "urlCommitment": "cc9ca530c5ce4bdd0df7bd0499725bdb9e6068308e86671e205e81ae15a907bd",
@@ -22,7 +22,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:25.102Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "b08b4c4c65fc5de0d6e8f3ae85b410d237d96090ba7d2762d75cef580485f3e3",
@@ -32,7 +35,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:31.496Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "3aa7e0927b7ca93fb4fc29691dba292f6ea14b8f3d6d879ca5800bd99a09e79b",
@@ -42,7 +48,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:38.551Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "9083591a208fb20d7442f7e343842af67f3a1f6c0ac5058f7ef81807ca1099af",
@@ -52,7 +61,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.346Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "c84f5aada2643be9cce26c90c201c136b1f2620a392ab0e9d046e725efa2979c",
@@ -62,7 +74,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.452Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "9043611611204ea1f5538ee1d234485cd41807ba170cafeefbb93021a7f67a88",
@@ -72,7 +87,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:22.464Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "2e70ce120e011194bd7d77870ca4c9505ba604926d2b9479b70ff0fcf7c2ee31",
@@ -82,7 +100,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.073Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "43ea227a8fb54635553ab2036e670e3954726015cc1bf326f38e03dafde6235a",
@@ -92,7 +113,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:27.016Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "40f8953cb180f6719f38a86ecef5b4887def0d4304adb8936b34f75b6b103cb7",
@@ -102,7 +126,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:30.398Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "320b44db3c788ff70ceddf98127a05732a7aaf9a7b217f151aafd4e8b25724a1",
@@ -112,7 +139,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.537Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "1088c35caaeaf9a71f2a57a01ba220f935f8bea325d9d3d8cc705584ffa281bc",
@@ -122,7 +152,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.480Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "25523592053cb0deeff3a63210549e583e07e9afe806b67e23c3f715394a5969",
@@ -132,7 +165,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:22.267Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "242bda624d3f73f77fd650f3282f808427cc43820c861941b2e169b9cddd518e",
@@ -142,7 +178,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.214Z",
+   "status": 400,
+   "delivered": false
   },
   {
    "urlCommitment": "36f07f8ed9a183c91dedb974c454546ce668185e339eb971aadc802b6d848558",
@@ -152,7 +191,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.802Z",
+   "status": 400,
+   "delivered": false
   },
   {
    "urlCommitment": "635a926e9608d9e0050a7b775137741609ffc4267c49ab5c0297a279b5f35719",
@@ -162,7 +204,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.385Z",
+   "status": 400,
+   "delivered": false
   },
   {
    "urlCommitment": "009532ecddf585a749ef072e1720a5fde23d95d6552144f290e1856c0d20d51f",
@@ -172,7 +217,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.719Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "cead67eb001ac025232e50b74a82c207cc5c424400bba3e8af1db5c2937776f0",
@@ -182,7 +230,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.730Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "eb5a1eb14b2bf4b653f2de643e1b60e6568ebc12e6dac2637c3683fe20cd696b",
@@ -192,7 +243,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:20.048Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "b6f881d9239f9d132c32d86c36cf3e88091ba628eb4b11dbc26c7753de6d2a32",
@@ -202,7 +256,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.914Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "59ac29630178cc80aa3a106e1fc0da03cbfc84afd7566a586cac5ca18414b4e3",
@@ -212,7 +269,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:19.929Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "3d473ca849a2c5ca3926ab26988811756d8096a11c95ebb6a501681ccaecd96d",
@@ -222,7 +282,10 @@
    "via": "Hugging Face router",
    "model": "llama-3.3-70b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:22.706Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "fc0c305ff611356840b857a6567856b13a965dc772975192b10e6e7193d0d47c",
@@ -232,7 +295,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.569Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "49a6a57f9b75cd128588d6c7a0c3a5e0d44753a6c064884e8a4d6af08507fcc6",
@@ -242,7 +308,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.503Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "fc83227c4beeff0cf042bc88af7a14141e6a985d2ad39cf6bb61c06c0160b6fb",
@@ -252,7 +321,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:21.356Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "c6dafaf47d43994b5cc3fa51e31342f22d59497fcfd36b14a12ef1488d41a470",
@@ -262,7 +334,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.305Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "2527175ce41015241d912033170f52a6e47a9fe83bd959afaaae2a1297693111",
@@ -272,7 +347,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:19.015Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "b87b62a3ef4bc8d260ec1baa08efc940fcfb1144b6092e0ad9c78dbfca50d589",
@@ -282,7 +360,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:22.283Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "b2b49d13b8b92df857eda8c2ac3b30fa8d958be3e713a26144207e02c844354d",
@@ -292,7 +373,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.650Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "f15bf4081749579f565e6224afc2e78dc772548e60e06ebe206989b8f1e00eeb",
@@ -302,7 +386,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.633Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "c63b26aee6b72d24f7734eb18cce2b8d27b7ba7d35c82f331cde59aa99b5a856",
@@ -312,7 +399,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:21.532Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "b35b41c588d5b7b1c6b215e811aad407ff3f33c0c5fb07c9719200890c8cc0b5",
@@ -322,7 +412,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.948Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "f32b3ddc31ef3c5bf08483526a293d7409ec30d7bae03538a2b72ff1500b35d5",
@@ -332,7 +425,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.948Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "f56d3123d521a75fbe111ce2902bb5a1993f587c173514dd48d275473d22ef1e",
@@ -342,7 +438,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:21.030Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "e884f4e005d1c7660952dcec3810b02e760ee7397ee39b04d61764f330390037",
@@ -352,7 +451,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.826Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "2ddb4a7c5bbfc9dbbfda34a0a7fa7f83c4b5501d849282b454683d7f8570a42d",
@@ -362,7 +464,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.163Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "65ad7d76f3ab3352b05eb83ac2eef3dbf8a2e783ed36d32fee2fd8eb5b809c55",
@@ -372,7 +477,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:22.550Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "f965bfac36fe2f1643556703a6fa484441bbe9be8bb912245ed4c495a4320674",
@@ -382,7 +490,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.793Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "5f079461d6d2b104f479ea0b2fae7dcc4681a61ba64dc9e5469a1a872af67b06",
@@ -392,7 +503,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:20.335Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "e695b308f6bd8f35188ce8d9b4efb09dff64da57fa8c8a28b3427712da52347a",
@@ -402,7 +516,10 @@
    "via": "Hugging Face router",
    "model": "gemma-4-31b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:25.809Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "aa740cc4749dcf2327528f1646e6bb87c598e884db5be6a9966a6a709db62539",
@@ -412,7 +529,10 @@
    "via": "OpenRouter",
    "model": "gemma-4-31b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.418Z",
+   "status": 429,
+   "delivered": false
   },
   {
    "urlCommitment": "8cbc4cfcf1985b9e6ac6b61b49f1af3a084d1334abcaecd2a40712e822feaa9b",
@@ -422,7 +542,10 @@
    "via": "OpenRouter",
    "model": "gemma-4-31b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.099Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "d1fe5d9bb953afcf0c3328414753565b3d93f05ca7d865b4dade992b47ecac18",
@@ -432,7 +555,10 @@
    "via": "OpenRouter",
    "model": "gemma-4-31b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:19.671Z",
+   "status": 429,
+   "delivered": false
   },
   {
    "urlCommitment": "1559510a2456e08e8058f8563ee74befa2c512d38fb24702604b187e3a732690",
@@ -442,7 +568,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.883Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "17fddb239e74be620cdbfc9ab5b6feacf147bbb56a849cc7cfddb7eb349ef359",
@@ -452,7 +581,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.278Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "8f187ad3584af8c81c0c28f076bd0388e432770fc456594cf918f63ec648f8dd",
@@ -462,7 +594,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:20.292Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "9431db4f8045b44d6e0e816386d979768b9635b6ab73b4201e49d4165e9514cf",
@@ -472,7 +607,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.827Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "f7492aa2d5d65614f0f3062fa952d8ae642ff8d350197d29b74505708d59e75c",
@@ -482,7 +620,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.685Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "40d74cf25a9faa8c293d4488de6078504bb3928619dc5e7c61a7ac3b241901f3",
@@ -492,7 +633,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:19.691Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "cf4ba77abc1a889cf839a876892d113358cb50841580bc303033756ea44033db",
@@ -502,7 +646,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.664Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "020409b2937f8e0d3d1bde87aa0e4274d7faf8fb7070ff0e91f9ec76dfd2c677",
@@ -512,7 +659,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:19.412Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "659ba397d9eaac2103dc855d987ff041c8216befc4396104aaff39f2b9094a48",
@@ -522,7 +672,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:22.098Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "cf6449d46411bdb6e7806735a9d90d3274b905b9a10ee195d95b74f007295b1b",
@@ -532,7 +685,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.453Z",
+   "status": 400,
+   "delivered": false
   },
   {
    "urlCommitment": "c0d7b8ae4daf4961cd7385843c543fabb27779c2a885b9b1fde9ad668ac5c6da",
@@ -542,7 +698,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:17.042Z",
+   "status": 400,
+   "delivered": false
   },
   {
    "urlCommitment": "5e9ba9bd4e1403804291a612d7d88a1f44bc21726a398332cabfd67be282c147",
@@ -552,7 +711,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.630Z",
+   "status": 400,
+   "delivered": false
   },
   {
    "urlCommitment": "c706984ab907d0001ada162d1c3caf7669bfe57ce5c3f3e7a5d03b0a086a70cf",
@@ -562,7 +724,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:15.698Z",
+   "status": 429,
+   "delivered": false
   },
   {
    "urlCommitment": "9131f58f346c8bf5208f8545b01577b62c908afb03028dcd2c37bfa7c44b98ba",
@@ -572,7 +737,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:20.707Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "a177e1082dc8d239b68a0907a8e44ee16969c2a50899560cff5133821efa69dc",
@@ -582,7 +750,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:26.804Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "8726e64821b2172e45ade8f686b0950615dc7fdebede47905556a5ec811acf3a",
@@ -592,7 +763,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.144Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "8cc2933b0fddae650c7e3381459283abba97d1d8e7c8bf26e4dc90bd8b007569",
@@ -602,7 +776,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.138Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "d5ab5bff846751dfd6aa7b2c48c0b68962f78cdf68378fc291e69c534d6ffd38",
@@ -612,7 +789,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:20.550Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "6f7870295fcf7e2b899b2b07a7644e10b6191ded8fc00e71f878ac59f41885b3",
@@ -622,7 +802,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.070Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "a5932239aa0eb9911efd646873ccdea56a2f03c9f337649a77efe97cb0825fcb",
@@ -632,7 +815,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 2,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.230Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "311ee14aba69cd7213b75b8777ffe6cc4e794f3ba0f420e8e3099644b072b881",
@@ -642,7 +828,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 4,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:20.327Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "f54edf01c7f21c01166bab7200ce6efa159e9382f2f482e68626eb47ea635620",
@@ -652,7 +841,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 3,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:16.041Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "9fc9669fdc84274e5bef2a90d84f624391350752380a19550755366a1562adf2",
@@ -662,7 +854,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 5,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:18.072Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "44c4ebfb3893149ebbeaf3202f48f4437c663aae036911e7cbd5c8b94d29a7c9",
@@ -672,7 +867,10 @@
    "via": "Hugging Face router",
    "model": "gpt-oss-120b",
    "template": 1,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:21.277Z",
+   "status": 200,
+   "delivered": true
   },
   {
    "urlCommitment": "fba9a574023825b9be9cc921622c9ff83bbd376999620ebced700fba977d0eb3",
@@ -682,7 +880,10 @@
    "via": "direct",
    "model": "none",
    "template": 0,
-   "committedAt": "2026-11-27T15:36:09.966Z"
+   "committedAt": "2026-11-27T15:36:09.966Z",
+   "sentAt": "2026-11-27T15:36:40.447Z",
+   "status": 200,
+   "delivered": true
   }
  ]
 }
