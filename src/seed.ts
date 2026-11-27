@@ -50,21 +50,50 @@ if (planned.length === 0) { console.log("No endpoint has a key; nothing to seed.
 const root = merkleRoot(planned.flatMap((p) => [p.seed.urlCommitment, p.seed.keyCommitment]));
 const memo = `verity canary v1 ${runId} root=${root} n=${planned.length}`;
 let anchor: MemoReceipt | null = null;
+let anchorError: string | null = null;
+let timestamp: { kind: "opentimestamps"; calendar: string; proof: string; submittedAt: string } | null = null;
 if (!noAnchor) {
-  anchor = await anchorMemo(memo); // throws before anything is sent if anchoring fails
-  console.log(`Committed ${planned.length} seeds on ${anchor.cluster}: ${anchor.explorer}`);
+  try {
+    anchor = await anchorMemo(memo);
+    console.log(`Committed ${planned.length} seeds on ${anchor.cluster}: ${anchor.explorer}`);
+  } catch (err) {
+    anchorError = err instanceof Error ? err.message : String(err);
+    console.log(`Solana anchoring unavailable (${anchorError}); using the free fallback.`);
+  }
+  // Free, independent timestamp: OpenTimestamps puts the root into Bitcoin within hours.
+  if (/^[0-9a-f]{64}$/.test(root)) {
+    const calendar = "https://a.pool.opentimestamps.org";
+    try {
+      const r = await fetch(`${calendar}/digest`, { method: "POST", body: Buffer.from(root, "hex"), signal: AbortSignal.timeout(20_000) });
+      if (r.ok) timestamp = { kind: "opentimestamps", calendar, proof: Buffer.from(await r.arrayBuffer()).toString("base64"), submittedAt: new Date().toISOString() };
+    } catch { /* best effort */ }
+  }
 }
 
 const file = join(outDir, "seeds", `${runId}.json`);
 const save = () => {
   mkdirSync(join(outDir, "seeds"), { recursive: true });
-  writeFileSync(file, JSON.stringify({ runId, startedAt, listener, root, memo, anchor, seeds: planned.map((p) => p.seed) }, null, 1));
+  writeFileSync(file, JSON.stringify({ runId, startedAt, listener, root, memo, anchor, anchorError, timestamp, publishedCommit, seeds: planned.map((p) => p.seed) }, null, 1));
   const indexPath = join(outDir, "index.json");
   const index = existsSync(indexPath) ? JSON.parse(readFileSync(indexPath, "utf8")) : { runs: [] };
   if (!index.runs.includes(runId)) index.runs.push(runId);
   writeFileSync(indexPath, JSON.stringify(index, null, 2));
 };
+let publishedCommit: string | null = null;
 save(); // hashes are public before the first prompt goes out
+if (!noAnchor && !anchor) {
+  // Without a Solana anchor, publish the commitments to the public repository first.
+  // GitHub records the push, so the hashes provably existed before any prompt was sent.
+  // If this fails too, nothing is sent.
+  if (!process.env.GITHUB_ACTIONS) { console.error("No anchor and not in GitHub Actions: refusing to send."); process.exit(1); }
+  const { execSync } = await import("node:child_process");
+  const run = (c: string) => execSync(c, { stdio: ["ignore", "pipe", "inherit"] }).toString().trim();
+  run(`git add ${outDir}`);
+  run(`git -c user.name=verity-canary -c user.email=41898282+github-actions[bot]@users.noreply.github.com commit -m "Canary commitments ${runId} (before sending)"`);
+  run("git pull --rebase -q && git push -q");
+  publishedCommit = run("git rev-parse HEAD");
+  console.log(`Commitments published in commit ${publishedCommit} before sending.`);
+}
 
 await Promise.all(endpoints.map(async (ep) => {
   for (const p of planned.filter((x) => x.ep?.id === ep.id)) {
