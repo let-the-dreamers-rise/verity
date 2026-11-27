@@ -1,9 +1,36 @@
 {
   "schema": 1,
-  "startedAt": "2026-11-26T22:50:21.514Z",
-  "finishedAt": "2026-11-26T22:55:20.071Z",
+  "startedAt": "2026-11-27T12:37:39.145Z",
+  "finishedAt": "2026-11-27T12:41:29.071Z",
   "probeCount": 36,
   "endpoints": [
+    {
+      "endpointId": "hf/akashml/llama-3.3-70b",
+      "host": "AkashML",
+      "via": "Hugging Face router",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 36,
+      "rateLimited": 0,
+      "setupError": null,
+      "availability": 1,
+      "toolCallAccuracy": 0.944,
+      "toolCallsPassed": 17,
+      "toolCallsScored": 18,
+      "toolFailures": [
+        {
+          "probeId": "tool-17",
+          "asked": "Arrange a 90 minute design workshop with ana@example.com and tom@example.com.",
+          "got": "schedule_meeting({\"topic\": \"design workshop\", \"duration_minutes\": \"90\", \"attendees\": [\"ana@example.com\", \"tom@example.com\"]})",
+          "why": "schema errors: $.duration_minutes: expected integer, got string"
+        }
+      ],
+      "truncationRate": 0,
+      "tokenRatio": 1,
+      "similarity": 0.786,
+      "medianLatencyMs": 2097,
+      "flags": []
+    },
     {
       "endpointId": "hf/amazon-bedrock/llama-3.3-70b",
       "host": "Amazon Bedrock",
@@ -57,8 +84,8 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.837,
-      "medianLatencyMs": 388,
+      "similarity": 0.831,
+      "medianLatencyMs": 639,
       "flags": [
         "low availability",
         "tool calls failing"
@@ -74,16 +101,10 @@
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
-      "toolCallAccuracy": 0.667,
-      "toolCallsPassed": 12,
+      "toolCallAccuracy": 0.722,
+      "toolCallsPassed": 13,
       "toolCallsScored": 18,
       "toolFailures": [
-        {
-          "probeId": "tool-5",
-          "asked": "Book 45 minutes with dana@example.com and li@example.com to review the Q3 roadmap.",
-          "got": "schedule_meeting({\"topic\": \"Q3 roadmap review\", \"duration_minutes\": \"45\", \"attendees\": [\"dana@example.com\", \"li@example.com\"]})",
-          "why": "schema errors: $.duration_minutes: expected integer, got string"
-        },
         {
           "probeId": "tool-6",
           "asked": "Set up a 30 minute onboarding call with sam@example.com.",
@@ -117,8 +138,8 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.662,
-      "medianLatencyMs": 1400,
+      "similarity": 0.801,
+      "medianLatencyMs": 1397,
       "flags": [
         "tool calls failing"
       ]
@@ -176,20 +197,20 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.82,
-      "medianLatencyMs": 614,
+      "similarity": 0.66,
+      "medianLatencyMs": 669,
       "flags": [
         "tool calls failing"
       ]
     },
     {
-      "endpointId": "hf/deepinfra/llama-3.3-70b",
-      "host": "DeepInfra",
+      "endpointId": "hf/groq/llama-3.3-70b",
+      "host": "Groq",
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 36,
-      "rateLimited": 0,
+      "probes": 35,
+      "rateLimited": 1,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
@@ -198,31 +219,9 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.722,
-      "medianLatencyMs": 2313,
+      "similarity": 0.706,
+      "medianLatencyMs": 444,
       "flags": []
-    },
-    {
-      "endpointId": "hf/groq/llama-3.3-70b",
-      "host": "Groq",
-      "via": "Hugging Face router",
-      "model": "llama-3.3-70b",
-      "reference": false,
-      "probes": 34,
-      "rateLimited": 2,
-      "setupError": null,
-      "availability": 1,
-      "toolCallAccuracy": 1,
-      "toolCallsPassed": 17,
-      "toolCallsScored": 17,
-      "toolFailures": [],
-      "truncationRate": 0,
-      "tokenRatio": 1,
-      "similarity": 0.566,
-      "medianLatencyMs": 340,
-      "flags": [
-        "outputs diverge from peers"
-      ]
     },
     {
       "endpointId": "hf/parasail/llama-3.3-70b",
@@ -247,7 +246,7 @@
         {
           "probeId": "tool-2",
           "asked": "Is it cold in Chicago today? Use fahrenheit.",
-          "got": "According to the current weather conditions, the temperature in Chicago is around 48°F. However, please note that weather conditions can change rapidly, and it's always a good idea to check the latest forecast for the most up-to-date information.",
+          "got": "I'm a large language model, I don't have have access to real-time weather information. But I can suggest some ways for you to find out the current temperature in Chicago. You can check the current weather in Chicago by: 1. Visiting a weather website such as we",
           "why": "no tool call returned"
         },
         {
@@ -271,14 +270,14 @@
         {
           "probeId": "tool-6",
           "asked": "Set up a 30 minute onboarding call with sam@example.com.",
-          "got": "I'm happy to help you set up a 30-minute onboarding call with Sam. To do this, I'll need to use a calendar tool. Let me just pull that up for you. Okay, I've got the calendar tool open. To schedule the call, I'll need to know a few more details. What date and ",
+          "got": "I can assist with setting up a call. To schedule a 30-minute onboarding call with Sam at sam@example.com, I'll need to use a calendar tool. Let's assume I have access to a calendar system like Google Calendar for this purpose. ### Scheduling the Call 1. **Open",
           "why": "no tool call returned"
         }
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.844,
-      "medianLatencyMs": 2480,
+      "similarity": 0.716,
+      "medianLatencyMs": 2430,
       "flags": [
         "tool calls failing"
       ]
@@ -299,8 +298,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.982,
-      "medianLatencyMs": 617,
+      "similarity": 0.783,
+      "medianLatencyMs": 773,
       "flags": []
     },
     {
@@ -309,18 +308,18 @@
       "via": "Hugging Face router",
       "model": "gemma-4-31b",
       "reference": false,
-      "probes": 14,
-      "rateLimited": 22,
+      "probes": 36,
+      "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
-      "toolCallsPassed": 8,
-      "toolCallsScored": 8,
+      "toolCallsPassed": 18,
+      "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 1,
-      "medianLatencyMs": 975,
+      "similarity": 0.964,
+      "medianLatencyMs": 881,
       "flags": []
     },
     {
@@ -339,8 +338,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.959,
-      "medianLatencyMs": 685,
+      "similarity": 0.941,
+      "medianLatencyMs": 652,
       "flags": []
     },
     {
@@ -359,8 +358,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.863,
-      "medianLatencyMs": 411,
+      "similarity": 0.848,
+      "medianLatencyMs": 400,
       "flags": []
     },
     {
@@ -379,8 +378,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.956,
-      "medianLatencyMs": 951,
+      "similarity": 0.964,
+      "medianLatencyMs": 1014,
       "flags": []
     },
     {
@@ -399,8 +398,28 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.992,
-      "medianLatencyMs": 1032,
+      "similarity": 0.93,
+      "medianLatencyMs": 1067,
+      "flags": []
+    },
+    {
+      "endpointId": "openrouter/free/gemma-4-31b",
+      "host": "OpenRouter free tier",
+      "via": "OpenRouter",
+      "model": "gemma-4-31b",
+      "reference": false,
+      "probes": 3,
+      "rateLimited": 33,
+      "setupError": null,
+      "availability": 1,
+      "toolCallAccuracy": 1,
+      "toolCallsPassed": 1,
+      "toolCallsScored": 1,
+      "toolFailures": [],
+      "truncationRate": 0,
+      "tokenRatio": null,
+      "similarity": null,
+      "medianLatencyMs": 3013,
       "flags": []
     },
     {
@@ -418,9 +437,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 1.005,
-      "similarity": 0.684,
-      "medianLatencyMs": 297,
+      "tokenRatio": 1.009,
+      "similarity": 0.758,
+      "medianLatencyMs": 432,
       "flags": []
     },
     {
@@ -438,9 +457,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 1.034,
-      "similarity": 0.701,
-      "medianLatencyMs": 270,
+      "tokenRatio": 1.038,
+      "similarity": 0.706,
+      "medianLatencyMs": 335,
       "flags": []
     },
     {
@@ -449,18 +468,18 @@
       "via": "Hugging Face router",
       "model": "gpt-oss-120b",
       "reference": false,
-      "probes": 27,
-      "rateLimited": 9,
+      "probes": 36,
+      "rateLimited": 0,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
-      "toolCallsPassed": 13,
-      "toolCallsScored": 13,
+      "toolCallsPassed": 18,
+      "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 0.982,
-      "similarity": 0.643,
-      "medianLatencyMs": 3034,
+      "tokenRatio": 0.973,
+      "similarity": 0.662,
+      "medianLatencyMs": 3022,
       "flags": []
     },
     {
@@ -473,8 +492,8 @@
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
-      "toolCallAccuracy": 0.5,
-      "toolCallsPassed": 9,
+      "toolCallAccuracy": 0.389,
+      "toolCallsPassed": 7,
       "toolCallsScored": 18,
       "toolFailures": [
         {
@@ -496,6 +515,12 @@
           "why": "arguments are not valid JSON"
         },
         {
+          "probeId": "tool-5",
+          "asked": "Book 45 minutes with dana@example.com and li@example.com to review the Q3 roadmap.",
+          "got": "schedule_meeting({\n  \"topic\": \"Review Q3 roadmap\",\n  \"duration_minutes\": 45,\n  \"attendees\": [\n    \"dana@example.com\",\n    \"li@example.com\"\n  ]\n)",
+          "why": "arguments are not valid JSON"
+        },
+        {
           "probeId": "tool-7",
           "asked": "How hot is it in Nairobi? Celsius please.",
           "got": "get_weather({\n  \"city\": \"Nairobi\",\n  \"unit\": \"celsius\"\n)",
@@ -506,18 +531,12 @@
           "asked": "I'm flying to Reykjavik tonight. Check the weather there in fahrenheit.",
           "got": "get_weather({\n  \"city\": \"Reykjavik\",\n  \"unit\": \"fahren)",
           "why": "arguments are not valid JSON"
-        },
-        {
-          "probeId": "tool-11",
-          "asked": "File a medium priority ticket titled 'Invoice PDF shows wrong currency'. Tags: billing, pdf, export.",
-          "got": "create_ticket({\n  \"title\": \"Invoice PDF shows wrong currency\",\n  \"priority\": \"medium\",\n  \"tags\": [\"billing\", \"pdf\", \"export)",
-          "why": "arguments are not valid JSON"
         }
       ],
       "truncationRate": 0,
-      "tokenRatio": 0.952,
-      "similarity": 0.737,
-      "medianLatencyMs": 470,
+      "tokenRatio": 0.956,
+      "similarity": 0.844,
+      "medianLatencyMs": 528,
       "flags": [
         "tool calls failing"
       ]
@@ -537,9 +556,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 0.977,
-      "similarity": 0.713,
-      "medianLatencyMs": 429,
+      "tokenRatio": 0.981,
+      "similarity": 0.832,
+      "medianLatencyMs": 532,
       "flags": []
     },
     {
@@ -557,9 +576,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 1.171,
-      "similarity": 0.692,
-      "medianLatencyMs": 445,
+      "tokenRatio": 1.198,
+      "similarity": 0.753,
+      "medianLatencyMs": 490,
       "flags": [
         "bills more tokens than peers"
       ]
@@ -569,16 +588,14 @@
     "Thresholds are provisional until a noise band is measured per host.",
     "Only open-weight models are audited; closed models cannot be re-run by a third party.",
     "A flag is a lead to investigate, not proof of wrongdoing.",
-    "hf/akashml/llama-3.3-70b: not measured, the request was refused (The requested model 'meta-llama/Llama-3.3-70B-Instruct' is not supported by provider 'akashml'.).",
-    "openrouter/free/gemma-4-31b: not measured, the request was refused (Provider returned error).",
+    "hf/deepinfra/llama-3.3-70b: not measured, the request was refused (The requested model 'meta-llama/Llama-3.3-70B-Instruct' is not supported by provider 'deepinfra'.).",
     "hf/together/gpt-oss-120b: not measured, the request was refused (The requested model 'openai/gpt-oss-120b' is not supported by provider 'together'.).",
     "hf/fireworks-ai/gpt-oss-120b: not measured, the request was refused (Provider returned error).",
-    "hf/groq/llama-3.3-70b: 2 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
-    "hf/crusoe/gemma-4-31b: 22 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
-    "hf/deepinfra/gpt-oss-120b: 9 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model)."
+    "hf/groq/llama-3.3-70b: 1 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
+    "openrouter/free/gemma-4-31b: 33 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model)."
   ],
   "evidence": {
-    "file": "raw/2026-11-26.json",
-    "sha256": "c66d25b712ad0ac99101ae5699add10c1b548deb0c4b73df67c930105527882a"
+    "file": "raw/2026-11-27.json",
+    "sha256": "450f7761f9b86fb72ef62e16c7af2a6b9f530ecafbc22d24d081fbea142a6163"
   }
 }
