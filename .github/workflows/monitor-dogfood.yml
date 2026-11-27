@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Listener smoke test (our own self-test bait must show as fired)
+        run: |
+          H=$(node -e 'const fs=require("fs");const d="results/canary/seeds/";for(const f of fs.readdirSync(d).sort()){const s=JSON.parse(fs.readFileSync(d+f)).seeds.find(x=>x.endpointId==="verity-selftest"&&x.delivered);if(s){console.log(s.urlCommitment);break}}')
+          R=$(curl -sf -X POST https://teamdocs-portal.vercel.app/check -H 'content-type: application/json' -d "{\"hashes\":[\"$H\"]}")
+          echo "$R"
+          echo "$R" | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);if(j.fired.length!==1){console.error("self-test bait not found");process.exit(1)}})'
+          curl -sf https://teamdocs-portal.vercel.app/status
       - uses: ./monitor
         with:
           base-url: https://router.huggingface.co/v1
