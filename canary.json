@@ -1,4 +1,4 @@
 {
-  "listener": "",
-  "note": "Base URL of the deployed listener (listener/). Bait links and keys in probes point here."
+  "listener": "https://teamdocs-portal.vercel.app",
+  "note": "Base URL of the deployed listener (listener/). Bait links and keys in probes point here. Public on purpose so anyone can check hits; a host could filter this domain, so serious runs will rotate to fresh domains."
 }
