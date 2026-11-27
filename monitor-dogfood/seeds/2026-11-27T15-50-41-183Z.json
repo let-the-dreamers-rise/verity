@@ -1,0 +1,27 @@
+{
+ "version": 1,
+ "runId": "2026-11-27T15-50-41-183Z",
+ "endpointHost": "router.huggingface.co",
+ "model": "openai/gpt-oss-120b:groq",
+ "listener": "https://teamdocs-portal.vercel.app",
+ "root": "86137c3f561736027cff8e67ab5483230a599e8e3549d6744c55faba1215eadd",
+ "seeds": [
+  {
+   "urlCommitment": "d328207a0d9c9a7e8d0149d71cf348de2eaf3c6b6e107aaaffad3b864867df0f",
+   "keyCommitment": "887171372a5f2f2cc2f9723faaf62cb9abf39a1c436f7a3bda01a9e3ff1dd6f9",
+   "template": 0,
+   "committedAt": "2026-11-27T15:50:41.183Z"
+  },
+  {
+   "urlCommitment": "82b97a1774ffbda72d3cd33309dfd1b3831d67861474b757ecb209fee2cab22d",
+   "keyCommitment": "92e84fe4fc6614063f161170b4966e5a5d076ce3adb7cc0b70a8120875bff31d",
+   "template": 3,
+   "committedAt": "2026-11-27T15:50:41.183Z"
+  }
+ ],
+ "timestamp": {
+  "kind": "opentimestamps",
+  "calendar": "https://a.pool.opentimestamps.org",
+  "proof": "8AjN1Of7WDmMigjwEHvK2c2oCMFuYRkqWf0M9+0I8SD0xkXW+qCk251ElvGzZi8k7hoF/TVKwrBIwcgCXKRvyQjxIMTMUUam4n+8AwBYVt+nPXDqC3sPl7A3z19dC486m3/NCPEg3JgNF7TbRC1cdBI9augbguKMJIPTcuFZUpJgrIGupPkI8QRrCabR8AjomMdR7yVsiQCD3+MNLvkMji4taHR0cHM6Ly9hbGljZS5idGMuY2FsZW5kYXIub3BlbnRpbWVzdGFtcHMub3Jn"
+ }
+}
