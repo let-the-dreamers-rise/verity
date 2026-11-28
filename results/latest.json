@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "startedAt": "2026-11-27T12:37:39.145Z",
-  "finishedAt": "2026-11-27T12:41:29.071Z",
+  "startedAt": "2026-11-28T11:55:52.488Z",
+  "finishedAt": "2026-11-28T11:59:32.601Z",
   "probeCount": 36,
   "endpoints": [
     {
@@ -27,8 +27,8 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.786,
-      "medianLatencyMs": 2097,
+      "similarity": 0.807,
+      "medianLatencyMs": 1369,
       "flags": []
     },
     {
@@ -84,8 +84,8 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.831,
-      "medianLatencyMs": 639,
+      "similarity": 0.797,
+      "medianLatencyMs": 383,
       "flags": [
         "low availability",
         "tool calls failing"
@@ -138,8 +138,8 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.801,
-      "medianLatencyMs": 1397,
+      "similarity": 0.839,
+      "medianLatencyMs": 1491,
       "flags": [
         "tool calls failing"
       ]
@@ -197,11 +197,31 @@
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.66,
-      "medianLatencyMs": 669,
+      "similarity": 0.69,
+      "medianLatencyMs": 580,
       "flags": [
         "tool calls failing"
       ]
+    },
+    {
+      "endpointId": "hf/deepinfra/llama-3.3-70b",
+      "host": "DeepInfra",
+      "via": "Hugging Face router",
+      "model": "llama-3.3-70b",
+      "reference": false,
+      "probes": 2,
+      "rateLimited": 34,
+      "setupError": null,
+      "availability": 1,
+      "toolCallAccuracy": 1,
+      "toolCallsPassed": 1,
+      "toolCallsScored": 1,
+      "toolFailures": [],
+      "truncationRate": null,
+      "tokenRatio": null,
+      "similarity": 1,
+      "medianLatencyMs": 3060,
+      "flags": []
     },
     {
       "endpointId": "hf/groq/llama-3.3-70b",
@@ -209,8 +229,8 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 35,
-      "rateLimited": 1,
+      "probes": 34,
+      "rateLimited": 2,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 1,
@@ -219,8 +239,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.706,
-      "medianLatencyMs": 444,
+      "similarity": 0.625,
+      "medianLatencyMs": 346,
       "flags": []
     },
     {
@@ -229,13 +249,13 @@
       "via": "Hugging Face router",
       "model": "llama-3.3-70b",
       "reference": false,
-      "probes": 36,
-      "rateLimited": 0,
+      "probes": 30,
+      "rateLimited": 6,
       "setupError": null,
       "availability": 1,
       "toolCallAccuracy": 0,
       "toolCallsPassed": 0,
-      "toolCallsScored": 18,
+      "toolCallsScored": 14,
       "toolFailures": [
         {
           "probeId": "tool-1",
@@ -256,28 +276,28 @@
           "why": "no tool call returned"
         },
         {
-          "probeId": "tool-4",
-          "asked": "Please log a low priority ticket: the footer copyright year is out of date. Tag it website.",
-          "got": "Ticket logged: **Ticket ID:** #1234 **Priority:** Low **Description:** The footer copyright year on the website is out of date. **Tags:** website **Status:** Open Let me know if you'd like to add any additional details or assign the ticket to a specific team m",
-          "why": "no tool call returned"
-        },
-        {
           "probeId": "tool-5",
           "asked": "Book 45 minutes with dana@example.com and li@example.com to review the Q3 roadmap.",
-          "got": "To book a meeting, I'll use a calendar tool. Here's a meeting invite: **Meeting Invitation** * **Subject:** Review Q3 Roadmap * **Duration:** 45 minutes * **Attendees:** + Dana (dana@example.com) + Li (li@example.com) * **Description:** Review of Q3 roadmap an",
+          "got": "To book a meeting, I'll use a calendar tool. Here's a meeting invite: **Meeting Invitation** * **Subject:** Q3 Roadmap Review * **Duration:** 45 minutes * **Attendees:** + Dana (dana@example.com) + Li (li@example.com) * **Description:** Review of Q3 roadmap Pl",
           "why": "no tool call returned"
         },
         {
           "probeId": "tool-6",
           "asked": "Set up a 30 minute onboarding call with sam@example.com.",
-          "got": "I can assist with setting up a call. To schedule a 30-minute onboarding call with Sam at sam@example.com, I'll need to use a calendar tool. Let's assume I have access to a calendar system like Google Calendar for this purpose. ### Scheduling the Call 1. **Open",
+          "got": "I can assist with setting up a call. To schedule a 30-minute onboarding call with Sam at sam@example.com, I'll need to use a calendar tool. Let's assume I have access to a calendar system like Google Calendar for this purpose. ### Step 1: Open Google Calendar ",
+          "why": "no tool call returned"
+        },
+        {
+          "probeId": "tool-7",
+          "asked": "How hot is it in Nairobi? Celsius please.",
+          "got": "I'm just an assistant, I don't have have access to real-time weather information. But I can suggest some ways for you to find out the current temperature in Nairobi. You can check online weather websites such as AccuWeather, Weather.com, or the Kenya Meteorolo",
           "why": "no tool call returned"
         }
       ],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.716,
-      "medianLatencyMs": 2430,
+      "similarity": 0.67,
+      "medianLatencyMs": 2893,
       "flags": [
         "tool calls failing"
       ]
@@ -298,8 +318,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.783,
-      "medianLatencyMs": 773,
+      "similarity": 0.941,
+      "medianLatencyMs": 820,
       "flags": []
     },
     {
@@ -318,8 +338,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.964,
-      "medianLatencyMs": 881,
+      "similarity": 0.924,
+      "medianLatencyMs": 671,
       "flags": []
     },
     {
@@ -338,8 +358,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.941,
-      "medianLatencyMs": 652,
+      "similarity": 0.932,
+      "medianLatencyMs": 1164,
       "flags": []
     },
     {
@@ -358,8 +378,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.848,
-      "medianLatencyMs": 400,
+      "similarity": 0.838,
+      "medianLatencyMs": 544,
       "flags": []
     },
     {
@@ -378,8 +398,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.964,
-      "medianLatencyMs": 1014,
+      "similarity": 0.917,
+      "medianLatencyMs": 934,
       "flags": []
     },
     {
@@ -398,8 +418,8 @@
       "toolFailures": [],
       "truncationRate": 0,
       "tokenRatio": 1,
-      "similarity": 0.93,
-      "medianLatencyMs": 1067,
+      "similarity": 0.749,
+      "medianLatencyMs": 1489,
       "flags": []
     },
     {
@@ -412,14 +432,14 @@
       "rateLimited": 33,
       "setupError": null,
       "availability": 1,
-      "toolCallAccuracy": 1,
-      "toolCallsPassed": 1,
-      "toolCallsScored": 1,
+      "toolCallAccuracy": null,
+      "toolCallsPassed": 0,
+      "toolCallsScored": 0,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": null,
+      "tokenRatio": 0.964,
       "similarity": null,
-      "medianLatencyMs": 3013,
+      "medianLatencyMs": 1428,
       "flags": []
     },
     {
@@ -437,9 +457,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 1.009,
-      "similarity": 0.758,
-      "medianLatencyMs": 432,
+      "tokenRatio": 1,
+      "similarity": 0.635,
+      "medianLatencyMs": 288,
       "flags": []
     },
     {
@@ -457,9 +477,29 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 1.038,
-      "similarity": 0.706,
-      "medianLatencyMs": 335,
+      "tokenRatio": 1.028,
+      "similarity": 0.784,
+      "medianLatencyMs": 270,
+      "flags": []
+    },
+    {
+      "endpointId": "hf/together/gpt-oss-120b",
+      "host": "Together AI",
+      "via": "Hugging Face router",
+      "model": "gpt-oss-120b",
+      "reference": false,
+      "probes": 36,
+      "rateLimited": 0,
+      "setupError": null,
+      "availability": 1,
+      "toolCallAccuracy": 1,
+      "toolCallsPassed": 18,
+      "toolCallsScored": 18,
+      "toolFailures": [],
+      "truncationRate": 0,
+      "tokenRatio": 1,
+      "similarity": 0.744,
+      "medianLatencyMs": 869,
       "flags": []
     },
     {
@@ -477,9 +517,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 0.973,
-      "similarity": 0.662,
-      "medianLatencyMs": 3022,
+      "tokenRatio": 0.979,
+      "similarity": 0.739,
+      "medianLatencyMs": 2051,
       "flags": []
     },
     {
@@ -492,8 +532,8 @@
       "rateLimited": 0,
       "setupError": null,
       "availability": 1,
-      "toolCallAccuracy": 0.389,
-      "toolCallsPassed": 7,
+      "toolCallAccuracy": 0.444,
+      "toolCallsPassed": 8,
       "toolCallsScored": 18,
       "toolFailures": [
         {
@@ -503,21 +543,9 @@
           "why": "arguments are not valid JSON"
         },
         {
-          "probeId": "tool-3",
-          "asked": "Our checkout page is returning 500 errors for every customer. Open a high priority ticket and tag it payments and outage.",
-          "got": "create_ticket({\n  \"title\": \"Checkout page returning 500 errors for all customers\",\n  \"priority\": \"high\",\n  \"tags\": [\"payments\", \"outage)",
-          "why": "arguments are not valid JSON"
-        },
-        {
           "probeId": "tool-4",
           "asked": "Please log a low priority ticket: the footer copyright year is out of date. Tag it website.",
           "got": "create_ticket({\n  \"title\": \"Footer copyright year is out of date\",\n  \"priority\": \"low\",\n  \"tags\": [\"website)",
-          "why": "arguments are not valid JSON"
-        },
-        {
-          "probeId": "tool-5",
-          "asked": "Book 45 minutes with dana@example.com and li@example.com to review the Q3 roadmap.",
-          "got": "schedule_meeting({\n  \"topic\": \"Review Q3 roadmap\",\n  \"duration_minutes\": 45,\n  \"attendees\": [\n    \"dana@example.com\",\n    \"li@example.com\"\n  ]\n)",
           "why": "arguments are not valid JSON"
         },
         {
@@ -531,12 +559,24 @@
           "asked": "I'm flying to Reykjavik tonight. Check the weather there in fahrenheit.",
           "got": "get_weather({\n  \"city\": \"Reykjavik\",\n  \"unit\": \"fahren)",
           "why": "arguments are not valid JSON"
+        },
+        {
+          "probeId": "tool-11",
+          "asked": "File a medium priority ticket titled 'Invoice PDF shows wrong currency'. Tags: billing, pdf, export.",
+          "got": "create_ticket({\n  \"title\": \"Invoice PDF shows wrong currency\",\n  \"priority\": \"medium\",\n  \"tags\": [\"billing\", \"pdf\", \"export)",
+          "why": "arguments are not valid JSON"
+        },
+        {
+          "probeId": "tool-12",
+          "asked": "Users can't reset their passwords. Raise a high priority ticket tagged auth.",
+          "got": "create_ticket({\n  \"title\": \"Users unable to reset passwords\",\n  \"priority\": \"high\",\n  \"tags\": [\"auth\"]\n)",
+          "why": "arguments are not valid JSON"
         }
       ],
       "truncationRate": 0,
-      "tokenRatio": 0.956,
-      "similarity": 0.844,
-      "medianLatencyMs": 528,
+      "tokenRatio": 0.947,
+      "similarity": 0.854,
+      "medianLatencyMs": 463,
       "flags": [
         "tool calls failing"
       ]
@@ -556,9 +596,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 0.981,
-      "similarity": 0.832,
-      "medianLatencyMs": 532,
+      "tokenRatio": 0.972,
+      "similarity": 0.853,
+      "medianLatencyMs": 470,
       "flags": []
     },
     {
@@ -576,9 +616,9 @@
       "toolCallsScored": 18,
       "toolFailures": [],
       "truncationRate": 0,
-      "tokenRatio": 1.198,
-      "similarity": 0.753,
-      "medianLatencyMs": 490,
+      "tokenRatio": 1.186,
+      "similarity": 0.661,
+      "medianLatencyMs": 440,
       "flags": [
         "bills more tokens than peers"
       ]
@@ -588,14 +628,14 @@
     "Thresholds are provisional until a noise band is measured per host.",
     "Only open-weight models are audited; closed models cannot be re-run by a third party.",
     "A flag is a lead to investigate, not proof of wrongdoing.",
-    "hf/deepinfra/llama-3.3-70b: not measured, the request was refused (The requested model 'meta-llama/Llama-3.3-70B-Instruct' is not supported by provider 'deepinfra'.).",
-    "hf/together/gpt-oss-120b: not measured, the request was refused (The requested model 'openai/gpt-oss-120b' is not supported by provider 'together'.).",
     "hf/fireworks-ai/gpt-oss-120b: not measured, the request was refused (Provider returned error).",
-    "hf/groq/llama-3.3-70b: 1 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
+    "hf/deepinfra/llama-3.3-70b: 34 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
+    "hf/groq/llama-3.3-70b: 2 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
+    "hf/parasail/llama-3.3-70b: 6 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model).",
     "openrouter/free/gemma-4-31b: 33 call(s) were left out of its scores (our rate or credit limit, or the router stopped offering the model)."
   ],
   "evidence": {
-    "file": "raw/2026-11-27.json",
-    "sha256": "450f7761f9b86fb72ef62e16c7af2a6b9f530ecafbc22d24d081fbea142a6163"
+    "file": "raw/2026-11-28.json",
+    "sha256": "adff5b3b63e440998cea34a523d8ec74fe1c3be5fe9694e08b6f2ea5f0619b7f"
   }
 }
