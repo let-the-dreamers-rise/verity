@@ -87,3 +87,16 @@ export async function anchorMemo(memo: string, listener = configuredListener()):
   if (!res.ok) throw new Error(`listener refused to anchor: ${body.error ?? res.status}`);
   return body as MemoReceipt;
 }
+
+/** Call a listener route that only Verity's own GitHub workflow may use (GitHub OIDC). */
+export async function oidcFetch(path: string, init: RequestInit = {}, listener = configuredListener()): Promise<Response> {
+  const reqUrl = process.env.ACTIONS_ID_TOKEN_REQUEST_URL, reqToken = process.env.ACTIONS_ID_TOKEN_REQUEST_TOKEN;
+  if (!listener || !reqUrl || !reqToken) throw new Error("needs a listener URL and a GitHub Actions OIDC token");
+  const idToken = await fetch(`${reqUrl}&audience=verity-listener`, { headers: { authorization: `bearer ${reqToken}` } })
+    .then((r) => r.json() as Promise<{ value: string }>);
+  return fetch(`${listener.replace(/\/$/, "")}${path}`, {
+    ...init,
+    headers: { "content-type": "application/json", ...(init.headers ?? {}), authorization: `Bearer ${idToken.value}` },
+    signal: AbortSignal.timeout(60_000),
+  });
+}

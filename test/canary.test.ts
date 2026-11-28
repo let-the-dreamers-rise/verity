@@ -25,3 +25,15 @@ test("merkle root is order independent and changes with any commitment", () => {
   assert.notEqual(merkleRoot(hs), merkleRoot(changed));
   assert.match(merkleRoot(hs), /^[0-9a-f]{64}$/);
 });
+
+import { newFact, recalled, factSentence, recallPrompt, factCommitment } from "../src/memorize.ts";
+test("training canary: recall needs 3 of 4 words, and the prompt does not leak the phrase", () => {
+  const f = newFact();
+  const w = f.phrase.split(" ");
+  assert.ok(recalled(`"${f.phrase}"`, f));
+  assert.ok(recalled(`${w[0]} ${w[1]} ${w[3]}`, f));
+  assert.ok(!recalled("I don't have information about that project.", f));
+  assert.ok(!recallPrompt(f).includes(f.phrase));
+  assert.ok(factSentence(f).includes(f.phrase));
+  assert.equal(factCommitment(f).length, 64);
+});

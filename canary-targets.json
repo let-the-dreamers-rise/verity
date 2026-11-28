@@ -1,0 +1,10 @@
+{
+  "note": "Free endpoints used only for bait and training canaries, not for the quality audit. Free tiers commonly allow the provider to use prompts for training, which is what training canaries test. Model ids from the discover workflow, 28 Nov 2026.",
+  "endpoints": [
+    { "id": "openrouter/free/ernie-5.5-flash-preview", "host": "Baidu (free preview)", "via": "openrouter", "baseUrl": "https://openrouter.ai/api/v1", "keyEnv": "OPENROUTER_API_KEY", "model": "ernie-5.5-flash-preview", "modelName": "baidu/ernie-5.5-flash-preview:free" },
+    { "id": "openrouter/free/particle-1", "host": "Particle AI (free)", "via": "openrouter", "baseUrl": "https://openrouter.ai/api/v1", "keyEnv": "OPENROUTER_API_KEY", "model": "particle-1", "modelName": "particle-ai/particle-1:free" },
+    { "id": "openrouter/free/flint-v1.0", "host": "Recursive (free)", "via": "openrouter", "baseUrl": "https://openrouter.ai/api/v1", "keyEnv": "OPENROUTER_API_KEY", "model": "flint-v1.0", "modelName": "recursive/flint-v1.0:free" },
+    { "id": "openrouter/free/nemotron-3.5-super-vl", "host": "NVIDIA (free)", "via": "openrouter", "baseUrl": "https://openrouter.ai/api/v1", "keyEnv": "OPENROUTER_API_KEY", "model": "nemotron-3.5-super-vl", "modelName": "nvidia/nemotron-3.5-super-vl:free" },
+    { "id": "openrouter/free/nemotron-3.5-lightning", "host": "NVIDIA (free)", "via": "openrouter", "baseUrl": "https://openrouter.ai/api/v1", "keyEnv": "OPENROUTER_API_KEY", "model": "nemotron-3.5-lightning", "modelName": "nvidia/nemotron-3.5-lightning:free" }
+  ]
+}

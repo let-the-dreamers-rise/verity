@@ -6,7 +6,8 @@
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { runProbe } from "./client.ts";
-import { anchorMemo, type MemoReceipt } from "./chain.ts";
+import { anchorMemo, oidcFetch, type MemoReceipt } from "./chain.ts";
+import { factCommitment, factSentence, newFact, type Fact, type VaultRecord } from "./memorize.ts";
 import { TEMPLATE_COUNT, baitPrompt, merkleRoot, newToken, sha256hex, type Seed } from "./canary.ts";
 import type { Endpoint, Probe } from "./types.ts";
 
@@ -19,19 +20,22 @@ const listener = (JSON.parse(readFileSync("canary.json", "utf8")).listener as st
 if (!listener) { console.error("Set the listener URL in canary.json first."); process.exit(1); }
 process.env.VERITY_LISTENER = listener;
 
-const endpoints = (JSON.parse(readFileSync("endpoints.json", "utf8")) as Endpoint[]).filter((e) => process.env[e.keyEnv]);
+// Audit endpoints plus training-canary targets: free endpoints whose terms allow the
+// provider to train on prompts, which is exactly what training canaries test.
+const targets = existsSync("canary-targets.json") ? (JSON.parse(readFileSync("canary-targets.json", "utf8")).endpoints as Endpoint[]) : [];
+const endpoints = [...(JSON.parse(readFileSync("endpoints.json", "utf8")) as Endpoint[]), ...targets].filter((e) => process.env[e.keyEnv]);
 const startedAt = new Date().toISOString();
 const runId = startedAt.replace(/[:.]/g, "-");
 
-interface Planned { seed: Seed; ep?: Endpoint; urlToken: string; keyToken: string }
+interface Planned { seed: Seed; ep?: Endpoint; urlToken: string; keyToken: string; fact?: Fact }
 const planned: Planned[] = [];
 for (const ep of endpoints) {
   for (let i = 0; i < perEndpoint; i++) {
-    const urlToken = newToken(), keyToken = newToken();
+    const urlToken = newToken(), keyToken = newToken(), fact = newFact();
     planned.push({
-      ep, urlToken, keyToken,
+      ep, urlToken, keyToken, fact,
       seed: {
-        urlCommitment: sha256hex(urlToken), keyCommitment: sha256hex(keyToken),
+        urlCommitment: sha256hex(urlToken), keyCommitment: sha256hex(keyToken), factCommitment: factCommitment(fact),
         endpointId: ep.id, host: ep.host, via: ep.via, model: ep.model,
         template: (i + planned.length) % TEMPLATE_COUNT, committedAt: startedAt,
       },
@@ -47,7 +51,17 @@ if (selftest) {
 }
 if (planned.length === 0) { console.log("No endpoint has a key; nothing to seed."); process.exit(0); }
 
-const root = merkleRoot(planned.flatMap((p) => [p.seed.urlCommitment, p.seed.keyCommitment]));
+// Training-canary facts go to the private vault before anything is sent. Without the
+// vault they could never be tested later, so if it fails the facts are left out.
+const withFacts = planned.filter((p) => p.fact);
+if (withFacts.length > 0) {
+  const records: VaultRecord[] = withFacts.map((p) => ({ ...p.fact!, commitment: p.seed.factCommitment!, runId, endpointId: p.seed.endpointId, host: p.seed.host, model: p.seed.model, via: p.seed.via }));
+  const ok = await oidcFetch("/__verity/vault", { method: "POST", body: JSON.stringify({ runId, records }) })
+    .then((r) => r.ok).catch(() => false);
+  if (ok) console.log(`Stored ${records.length} training-canary facts in the private vault.`);
+  else { console.log("Vault unavailable; sending without training-canary facts."); for (const p of withFacts) { delete p.fact; delete p.seed.factCommitment; } }
+}
+const root = merkleRoot(planned.flatMap((p) => [p.seed.urlCommitment, p.seed.keyCommitment, ...(p.seed.factCommitment ? [p.seed.factCommitment] : [])]));
 const memo = `verity canary v1 ${runId} root=${root} n=${planned.length}`;
 let anchor: MemoReceipt | null = null;
 let anchorError: string | null = null;
@@ -99,7 +113,7 @@ await Promise.all(endpoints.map(async (ep) => {
   for (const p of planned.filter((x) => x.ep?.id === ep.id)) {
     const probe: Probe = {
       id: "bait", kind: "fingerprint", maxTokens: 200,
-      messages: [{ role: "user", content: baitPrompt(p.seed.template, listener, p.urlToken, p.keyToken) }],
+      messages: [{ role: "user", content: baitPrompt(p.seed.template, listener, p.urlToken, p.keyToken) + (p.fact ? "\n\n" + factSentence(p.fact) : "") }],
     };
     const o = await runProbe(ep, probe, process.env[ep.keyEnv]!);
     p.seed.sentAt = new Date().toISOString();

@@ -73,6 +73,17 @@ async function allHits() {
   return out.sort((a, b) => a.at.localeCompare(b.at));
 }
 
+async function fromVerityWorkflow(req) {
+  await verifyGithubToken(String(req.headers.authorization ?? "").replace(/^Bearer\s+/i, ""), {
+    audience: "verity-listener", repository: "let-the-dreamers-rise/verity", ref: "refs/heads/main",
+  });
+}
+
+async function readJson(pathname) {
+  const r = await get(pathname, { access: "private", useCache: false });
+  return r && r.statusCode === 200 ? JSON.parse(await new Response(r.stream).text()) : null;
+}
+
 export default async function handler(req, res) {
   const url = new URL(req.url, "http://x");
   const path = url.searchParams.get("__p") ?? url.pathname;
@@ -96,6 +107,27 @@ export default async function handler(req, res) {
     if (!/^verity [ -~]{10,400}$/.test(memo)) return res.status(400).json({ error: "memo must start with 'verity ' and be printable ASCII" });
     try { return res.status(200).json(await postMemo(memo, signerFrom((await secrets()).solanaSecretKey))); }
     catch (err) { return res.status(502).json({ error: err instanceof Error ? err.message : String(err) }); }
+  }
+  if (path === "/__verity/vault") {
+    // Private store for training-canary facts. Only Verity's own main-branch workflow can
+    // write or read it, proven by its GitHub OIDC token.
+    try { await fromVerityWorkflow(req); }
+    catch (err) { return res.status(401).json({ error: err instanceof Error ? err.message : "unauthorized" }); }
+    if (req.method === "POST") {
+      const runId = String(req.body?.runId ?? "");
+      const records = Array.isArray(req.body?.records) ? req.body.records.slice(0, 2000) : [];
+      if (!/^[0-9TZ-]{10,40}$/.test(runId) || records.length === 0) return res.status(400).json({ error: "runId and records required" });
+      await put(`vault/${runId}.json`, JSON.stringify(records), { access: "private", contentType: "application/json", addRandomSuffix: false, allowOverwrite: true });
+      return res.status(200).json({ stored: records.length });
+    }
+    const out = [];
+    let cursor;
+    do {
+      const page = await list({ prefix: "vault/", cursor, limit: 1000 });
+      for (const b of page.blobs) out.push(...((await readJson(b.pathname)) ?? []));
+      cursor = page.hasMore ? page.cursor : undefined;
+    } while (cursor);
+    return res.status(200).json({ records: out });
   }
   if (path.startsWith("/__verity/hits/")) {
     if (!(await isAdmin(path.slice("/__verity/hits/".length)))) return res.status(404).send("Not found");

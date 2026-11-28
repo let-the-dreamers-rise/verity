@@ -16,6 +16,8 @@ export interface Seed {
   sentAt?: string;
   status?: number;
   delivered?: boolean;
+  /** sha256(codename|phrase) of the training canary carried by this prompt, if any. */
+  factCommitment?: string;
 }
 
 export const sha256hex = (s: string) => createHash("sha256").update(s).digest("hex");
