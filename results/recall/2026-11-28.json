@@ -1,0 +1,43 @@
+{
+ "day": "2026-11-28",
+ "factsInVault": 54,
+ "factsTested": 10,
+ "results": [
+  {
+   "endpointId": "hf/groq/llama-3.3-70b",
+   "host": "Groq",
+   "model": "llama-3.3-70b",
+   "asked": 10,
+   "answered": 10,
+   "recalled": 0,
+   "hits": []
+  },
+  {
+   "endpointId": "hf/deepinfra/gemma-4-31b",
+   "host": "DeepInfra",
+   "model": "gemma-4-31b",
+   "asked": 10,
+   "answered": 10,
+   "recalled": 0,
+   "hits": []
+  },
+  {
+   "endpointId": "hf/groq/gpt-oss-120b",
+   "host": "Groq",
+   "model": "gpt-oss-120b",
+   "asked": 10,
+   "answered": 10,
+   "recalled": 0,
+   "hits": []
+  },
+  {
+   "endpointId": "openrouter/free/nemotron-3.5-lightning",
+   "host": "NVIDIA (free)",
+   "model": "nemotron-3.5-lightning",
+   "asked": 10,
+   "answered": 10,
+   "recalled": 0,
+   "hits": []
+  }
+ ]
+}
